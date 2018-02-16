@@ -1,4 +1,4 @@
-defmodule Data do
+defmodule Dgtidx.Data do
 
   @board_id 2
   @idx_mode_debug false

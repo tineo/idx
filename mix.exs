@@ -10,7 +10,15 @@ defmodule Dgtidx.Mixfile do
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      # Docs
+      name: "DGTIDX",
+      source_url: "https://github.com/dgtalliance/trem-mq",
+      homepage_url: "https://github.com/dgtalliance/trem-mq",
+      docs: [
+        #main: "Trem-mq",
+        logo: "priv/static/images/mq.png",
+        extras: ["README.md"]]
     ]
   end
 
@@ -47,7 +55,8 @@ defmodule Dgtidx.Mixfile do
       {:hackney, "~> 1.6"},
       {:poison, "~> 3.1"},
       {:redix, ">= 0.0.0"},
-      {:timex, "~> 3.1"}
+      {:timex, "~> 3.1"},
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false}
     ]
   end
 

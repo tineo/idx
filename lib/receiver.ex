@@ -1,11 +1,41 @@
 #alias ExAws.S3
 
-defmodule Receiver do
+defmodule Dgtidx.Receiver do
+  @moduledoc """
+  Starts the receiver from a Consumer.
+  This receiver opens the connection to RabbitMQ and checks that the received data is already in Redis.
+  """
 
-  @num_upd 0
-  @num_news 0
+  @doc """
+  Using `map_rds` to get all elements from a table and save these rows in Redis
+  using `rds` to avoid query again to database.
+  """
+  def load_to_redis(map_rds) do
+    # REVIEW
 
-  def preload_in_cache(query, rds) do
+    ###
+    # Preload
+    ###
+
+    ### Cities
+    IO.puts "Preload"
+    query = "select name, id from idx_city"
+    _preload_in_cache(query,map_rds.city)
+
+    #### Offices
+    query = "select code, id from idx_office"
+    _preload_in_cache(query,map_rds.office)
+
+    #### Agents and Coagents
+    query = "select code, id from idx_agent"
+    _preload_in_cache(query,map_rds.agent)
+
+    #### County
+    query = "select name, id from idx_county"
+    _preload_in_cache(query,map_rds.county)
+  end
+
+  def _preload_in_cache(query, rds) do
     res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [])
     #res |> IO.inspect
     IO.puts("nums: #{res.num_rows}")
@@ -18,108 +48,46 @@ defmodule Receiver do
     end
   end
 
+  @doc """
+  Check if there is `payload` in Redis if it does not exist, send it to Parser process it.
+  """
+  def verify_payload(payload, map_rds) do
+
+    rds = Map.get(map_rds, :properties)
+    #IO.puts "received a message!"
+    row = Poison.decode!(payload)
+
+    {_, exists_key} = Redix.command(rds, ["EXISTS", row["Matrix_Unique_ID"]])
+    cur_hash = :crypto.hash(:md5, payload) |> Base.encode16()
+    (if ( exists_key == 0 ) do
+       IO.puts("*****New!*****")
+       Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
+       Dgtidx.Parser.parse(row, map_rds)
+     else
+       #cur_hash = :crypto.hash(:md5, payload) |> Base.encode16()
+       {_, saved_hash} = Redix.command(rds, ["GET", row["Matrix_Unique_ID"]])
+       (if ( cur_hash  != saved_hash) do
+          IO.puts("*****Updated!*****")
+          Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
+          Dgtidx.Parser.parse(row, map_rds)
+        end)
+     end)
+  end
+
+  @doc """
+  Get channels and Redis connection for recieve new payloads
+  """
   def wait_for_messages do
-
-    {:ok, rds} = Redix.start_link("redis://127.0.0.1:6379/3", name: :redix)
-
-    ### Redis for cache tables
-    {:ok, rds_city} = Redix.start_link("redis://127.0.0.1:6379/4", name: :redix_city)
-    {:ok, rds_office} = Redix.start_link("redis://127.0.0.1:6379/5", name: :redix_office)
-    {:ok, rds_agent} = Redix.start_link("redis://127.0.0.1:6379/6", name: :redix_agent)
-    {:ok, rds_county} = Redix.start_link("redis://127.0.0.1:6379/8", name: :redix_county)
-
-    queue_name = "to_process_w2"
-    queue_name2 = "to_process_w2_fn"
-    queue_name3 = "to_process_w2_fn_3"
-    queue_name4 = "to_process_w2_fn_4"
-    exchange_name = "ex_w2"
-    {:ok, connection} = AMQP.Connection.open("amqp://tineo:tineo@104.131.75.179")
-
-    {:ok, connection2} = AMQP.Connection.open("amqp://tineo:tineo@104.131.75.179")
-    {:ok, connection3} = AMQP.Connection.open("amqp://tineo:tineo@104.131.75.179")
-
-    {:ok, channel} = AMQP.Channel.open(connection)
-
-    {:ok, channel2} = AMQP.Channel.open(connection2)
-    {:ok, channel3} = AMQP.Channel.open(connection3)
-
-    AMQP.Queue.declare(channel, queue_name, durable: true)
-    AMQP.Exchange.direct(channel, exchange_name, durable: true)
-    AMQP.Queue.bind(channel, queue_name, exchange_name)
-    #AMQP.Basic.qos(channel, prefetch_count: 1)
-    AMQP.Basic.consume(channel, queue_name, nil, no_ack: false)
-
-    AMQP.Queue.declare(channel, queue_name2, durable: true)
-    AMQP.Queue.bind(channel, queue_name2, exchange_name)
-    AMQP.Basic.consume(channel, queue_name2, nil, no_ack: false)
-
-    AMQP.Queue.declare(channel, queue_name3, durable: true)
-    AMQP.Queue.bind(channel, queue_name3, exchange_name)
-    AMQP.Basic.consume(channel, queue_name3, nil, no_ack: false)
-
-    AMQP.Queue.declare(channel, queue_name4, durable: true)
-    AMQP.Queue.bind(channel, queue_name4, exchange_name)
-    AMQP.Basic.consume(channel, queue_name4, nil, no_ack: false)
-
-    ###
-    # Preload
-    ###
-
-    ### Cities
-    IO.puts "Preload"
-    query = "select name, id from idx_city"
-    preload_in_cache(query,rds_city)
-
-    #### Offices
-    query = "select code, id from idx_office"
-    preload_in_cache(query,rds_office)
-
-    #### Agents and Coagents
-    query = "select code, id from idx_agent"
-    preload_in_cache(query,rds_agent)
-
-    #### County
-    query = "select name, id from idx_county"
-    preload_in_cache(query,rds_county)
-
-    map_rds = %{
-      :properties => rds,
-      :city => rds_city,
-      :office => rds_office,
-      :agent => rds_agent,
-      :county => rds_county
-    }
-
+    map_rds = Dgtidx.RedisMap.get_redis_map()
+    load_to_redis(map_rds)
     #Agent.start_link(fn -> [] end, name: :batcher)
-    _wait_for_messages(channel, map_rds)
-    _wait_for_messages(channel2, map_rds)
-    _wait_for_messages(channel3, map_rds)
+    Enum.each(Dgtidx.RabbitMap.get_amqp_channels(), fn(channel) -> _wait_for_messages(channel, map_rds) end)
   end
 
   defp _wait_for_messages(channel, map_rds) do
     receive do
       {:basic_deliver, payload, meta} ->
-
-        rds = Map.get(map_rds, :properties)
-        #IO.puts "received a message!"
-        row = Poison.decode!(payload)
-
-        {_, exists_key} = Redix.command(rds, ["EXISTS", row["Matrix_Unique_ID"]])
-        cur_hash = :crypto.hash(:md5, payload) |> Base.encode16()
-        (if ( exists_key == 0 ) do
-           IO.puts("*****New!*****")
-           Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
-           Parser.parse(row ,map_rds)
-         else
-           #cur_hash = :crypto.hash(:md5, payload) |> Base.encode16()
-           {_, saved_hash} = Redix.command(rds, ["GET", row["Matrix_Unique_ID"]])
-           (if ( cur_hash  != saved_hash) do
-              IO.puts("*****Updated!*****")
-              Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
-              Parser.parse(row ,map_rds)
-           end)
-        end)
-
+        verify_payload(payload, map_rds)
         ## ACK if no errors
         AMQP.Basic.ack(channel, meta.delivery_tag) #|> IO.inspect()
         _wait_for_messages(channel, map_rds)

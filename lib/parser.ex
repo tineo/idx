@@ -1,4 +1,4 @@
-defmodule Parser do
+defmodule Dgtidx.Parser do
   @moduledoc false
 
   @board_id 2
@@ -753,7 +753,7 @@ defmodule Parser do
     idx_row = 0|> reverse_put(idx_row, :validate_image)
     idx_row = 0|> reverse_put(idx_row, :office_seller_id)
 
-    Data.process(idx_row)
+    Dgtidx.Data.process(idx_row)
     #Dgtidx.Repo.all(Dgtidx.IdxPropertyActive) |>IO.inspect
 
   end
