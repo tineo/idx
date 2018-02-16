@@ -99,15 +99,12 @@ defmodule Receiver do
   defp _wait_for_messages(channel, map_rds) do
     receive do
       {:basic_deliver, payload, meta} ->
-        #IO.puts meta
-        #IO.inspect(map_rds)
+
         rds = Map.get(map_rds, :properties)
         #IO.puts "received a message!"
         row = Poison.decode!(payload)
 
         {_, exists_key} = Redix.command(rds, ["EXISTS", row["Matrix_Unique_ID"]])
-        #"Existe? " <> exists_hash |> IO.puts
-        #row["Matrix_Unique_ID"] |> IO.puts
         cur_hash = :crypto.hash(:md5, payload) |> Base.encode16()
         (if ( exists_key == 0 ) do
            IO.puts("*****New!*****")

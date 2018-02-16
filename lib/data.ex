@@ -31,8 +31,6 @@ defmodule Data do
     List.insert_at(list, 0, element)
   end
 
-
-
   def delete_property(sysid, tables) do
     #global $db;
     #foreach($tables as $t) {

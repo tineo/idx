@@ -243,8 +243,6 @@ defmodule Parser do
       |> reverse_put(idx_row, :image1)
 
     #IO.puts
-    "PhotoModificationTimestamp"|> IO.puts
-    row["PhotoModificationTimestamp"] |> IO.puts
     idx_row = str_to_valid_date(row["PhotoModificationTimestamp"]) |> reverse_put(idx_row, :img_date1)#img_date
 
 
@@ -299,10 +297,10 @@ defmodule Parser do
       row["LegalDescription"] #legal_desc`,
       |> reverse_put(idx_row, :parking_desc)
 
-
     ##SELECT `id` FROM idx_county WHERE `name` = CountyOrParish limit 1
+    datacounty = %{ table: "idx_agent", field: "code", code_or_name: row["CoListAgentMLSID"] }
     idx_row =
-      (if (row["CountyOrParish"] != "") ,do: 666,else: 0)
+      (if (row["CountyOrParish"] != "") ,do: check_exists_in_redis( map_rds.county, datacounty ),else: 0)
       #|> IO.puts #county_id
       |> reverse_put(idx_row, :county_id)
 
