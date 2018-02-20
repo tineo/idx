@@ -219,12 +219,12 @@ defmodule Dgtidx.Parser do
 
     #IO.puts
     idx_row =
-      row["BedsTotal"] #bed
-      |> reverse_put(idx_row, :year)
+    (if (row["BedsTotal"] != ""), do: row["BedsTotal"], else: 0) #bed
+      |> reverse_put(idx_row, :bed)
 
     #IO.puts
     idx_row =
-      row["BathsFull"] #bath
+    (if (row["BathsFull"] != ""), do: row["BathsFull"], else: 0) #bath
       |> reverse_put(idx_row, :bath)
 
     #IO.puts
@@ -392,7 +392,7 @@ defmodule Dgtidx.Parser do
 
     #IO.puts
     idx_row =
-      row["PetsAllowedYN"] #pets
+      (if (row["PetsAllowedYN"] != ""), do: row["PetsAllowedYN"], else: 0)#pets
       |> reverse_put(idx_row, :pets)
 
     idx_row =
@@ -740,18 +740,18 @@ defmodule Dgtidx.Parser do
     #IO.inspect(idx_row[:status])
 
     #Fix to not exists columns
-    idx_row = 0|> reverse_put(idx_row, :office_seller_id)
-    idx_row = 0|> reverse_put(idx_row, :agent_seller_id)
-    idx_row = 0|> reverse_put(idx_row, :co_agent_seller_id)
-    idx_row = 0|> reverse_put(idx_row, :fireplace)
-    idx_row = 0|> reverse_put(idx_row, :oh_info)
-    idx_row = 0|> reverse_put(idx_row, :equestrian)
-    idx_row = 0|> reverse_put(idx_row, :eq_num_barns)
-    idx_row = 0|> reverse_put(idx_row, :eq_num_stalls)
-    idx_row = 0|> reverse_put(idx_row, :floor)
-    idx_row = 0|> reverse_put(idx_row, :rg_id)
-    idx_row = 0|> reverse_put(idx_row, :validate_image)
-    idx_row = 0|> reverse_put(idx_row, :office_seller_id)
+    idx_row = 0 |> reverse_put(idx_row, :office_seller_id)
+    idx_row = 0 |> reverse_put(idx_row, :agent_seller_id)
+    idx_row = 0 |> reverse_put(idx_row, :co_agent_seller_id)
+    idx_row = 0 |> reverse_put(idx_row, :fireplace)
+    idx_row = 0 |> reverse_put(idx_row, :oh_info)
+    idx_row = 0 |> reverse_put(idx_row, :equestrian)
+    idx_row = 0 |> reverse_put(idx_row, :eq_num_barns)
+    idx_row = 0 |> reverse_put(idx_row, :eq_num_stalls)
+    idx_row = 0 |> reverse_put(idx_row, :floor)
+    idx_row = 0 |> reverse_put(idx_row, :rg_id)
+    idx_row = 0 |> reverse_put(idx_row, :validate_image)
+    idx_row = 0 |> reverse_put(idx_row, :office_seller_id)
 
     Dgtidx.Data.process(idx_row)
     #Dgtidx.Repo.all(Dgtidx.IdxPropertyActive) |>IO.inspect
