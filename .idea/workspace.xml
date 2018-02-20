@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/rel/config.exs" />
+    <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="d">
+      <change beforePath="" afterPath="$PROJECT_DIR$/config/prod.secret.exs" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lib/parser.ex" afterPath="$PROJECT_DIR$/lib/parser.ex" />
-      <change beforePath="$PROJECT_DIR$/mix.exs" afterPath="$PROJECT_DIR$/mix.exs" />
-      <change beforePath="$PROJECT_DIR$/mix.lock" afterPath="$PROJECT_DIR$/mix.lock" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/dgtidx/ebin/" />
     <ignored path="$PROJECT_DIR$/_build/test/lib/dgtidx/ebin/" />
@@ -104,11 +102,21 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="prod.secret.exs" pinned="false" current-in-tab="true">
+              <file leaf-file-name="prod.secret.exs" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="342">
                       <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/.gitignore">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="270">
+                      <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
                       <folding />
                     </state>
                   </provider>
@@ -139,16 +147,6 @@
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="846">
                       <caret line="80" column="21" lean-forward="false" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="rabbit_map.ex" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/lib/rabbit_map.ex">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="0">
-                      <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
                       <folding />
                     </state>
                   </provider>
@@ -256,6 +254,7 @@
         <option value="$PROJECT_DIR$/mix.exs" />
         <option value="$PROJECT_DIR$/lib/parser.ex" />
         <option value="$PROJECT_DIR$/config/prod.secret.exs" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -470,7 +469,7 @@
       <option name="presentableId" value="Default" />
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
-      <workItem from="1518800830550" duration="20968000" />
+      <workItem from="1518800830550" duration="21507000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -493,14 +492,22 @@
       <option name="project" value="LOCAL" />
       <updated>1518822755114</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add prod">
+      <created>1519148452142</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1519148452142</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103476000" />
+    <option name="totallyTimeSpent" value="104015000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -541,7 +548,8 @@
     <MESSAGE value="last update for 0.1" />
     <MESSAGE value="add docs" />
     <MESSAGE value="add db" />
-    <option name="LAST_COMMIT_MESSAGE" value="add db" />
+    <MESSAGE value="add prod" />
+    <option name="LAST_COMMIT_MESSAGE" value="add prod" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -850,6 +858,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
           <folding />
         </state>
       </provider>
