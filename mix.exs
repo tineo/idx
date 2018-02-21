@@ -56,6 +56,7 @@ defmodule Dgtidx.Mixfile do
       {:poison, "~> 3.1"},
       {:redix, ">= 0.0.0"},
       {:timex, "~> 3.1"},
+     # {:httpoison, "~> 1.0"},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:distillery, "~> 1.5", runtime: false}
     ]

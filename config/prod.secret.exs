@@ -19,3 +19,7 @@ config :dgtidx, Dgtidx.Repo,
   password: ~s(g&vkgm2E#Z98Us%Lima),
   database: "idx18test",
   pool_size: 15
+
+# Configure your rabbitmq
+config :dgtidx, Dgtidx.RabbitMap,
+  url: "amqp://tineo:tineo@localhost"

@@ -8,10 +8,14 @@ defmodule Dgtidx.RabbitMap do
     queue_name4 = "to_process_w2_fn_4"
     exchange_name = "ex_w2"
 
-    {:ok, connection} = AMQP.Connection.open("amqp://tineo:tineo@104.131.75.179")
+    config  = Application.get_env(:dgtidx, __MODULE__)
 
-    {:ok, connection2} = AMQP.Connection.open("amqp://tineo:tineo@104.131.75.179")
-    {:ok, connection3} = AMQP.Connection.open("amqp://tineo:tineo@104.131.75.179")
+    IO.puts(config[:url])
+
+    {:ok, connection} = AMQP.Connection.open(config[:url])
+
+    {:ok, connection2} = AMQP.Connection.open(config[:url])
+    {:ok, connection3} = AMQP.Connection.open(config[:url])
 
     {:ok, channel} = AMQP.Channel.open(connection)
 

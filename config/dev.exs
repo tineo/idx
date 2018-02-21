@@ -56,3 +56,7 @@ config :dgtidx, Dgtidx.Repo,
   hostname: "localhost",
   pool_size: 10,
   loggers: []
+
+# Configure your rabbitmq
+config :dgtidx, Dgtidx.RabbitMap,
+  url: "amqp://guest:guest@localhost"
