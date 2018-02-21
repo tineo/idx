@@ -80,11 +80,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="dev.exs" pinned="false" current-in-tab="false">
+          <file leaf-file-name="dev.exs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/config/dev.exs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="250">
-                  <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="33" />
+                <state relative-caret-position="196">
+                  <caret line="61" column="37" lean-forward="true" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
@@ -100,11 +100,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="prod.secret.exs" pinned="false" current-in-tab="true">
+          <file leaf-file-name="prod.secret.exs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="106">
-                  <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+                <state relative-caret-position="162">
+                  <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -123,8 +123,8 @@
           <file leaf-file-name="redis_map.ex" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/redis_map.ex">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+                <state relative-caret-position="0">
+                  <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -417,7 +417,7 @@
       <option name="presentableId" value="Default" />
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
-      <workItem from="1518800830550" duration="33101000" />
+      <workItem from="1518800830550" duration="33361000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -468,11 +468,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519231979022</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="edit config redis">
+      <created>1519232128437</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1519232128437</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115609000" />
+    <option name="totallyTimeSpent" value="115869000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1797" height="1020" extended-state="0" />
@@ -901,8 +908,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/redis_map.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        <state relative-caret-position="0">
+          <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -915,18 +922,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/dev.exs">
+    <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="33" />
+        <state relative-caret-position="162">
+          <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
+    <entry file="file://$PROJECT_DIR$/config/dev.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        <state relative-caret-position="196">
+          <caret line="61" column="37" lean-forward="true" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="37" />
           <folding />
         </state>
       </provider>

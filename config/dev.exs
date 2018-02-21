@@ -61,9 +61,8 @@ config :dgtidx, Dgtidx.Repo,
 config :dgtidx, Dgtidx.RabbitMap,
   url: "amqp://guest:guest@localhost"
 
-# Configure your rabbitmq
-config :dgtidx, Dgtidx.RabbitMap,
-  url: "redis://127.0.0.1:6379/",
+# Configure your redis
+config :dgtidx, Dgtidx.RedisMap,
   rds: "redis://127.0.0.1:6379/3",
   rds_city: "redis://127.0.0.1:6379/4",
   rds_office: "redis://127.0.0.1:6379/5",
