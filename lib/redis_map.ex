@@ -9,13 +9,13 @@ defmodule Dgtidx.RedisMap do
     config  = Application.get_env(:dgtidx, __MODULE__)
 
     IO.inspect(config)
-    {:ok, rds} = Redix.start_link(config[:rds], name: :redix)
+    {:ok, rds} = Redix.start_link("redis://127.0.0.1:6379/3", name: :redix)
 
     ### Redis for cache tables
-    {:ok, rds_city} = Redix.start_link(config[:rds_city], name: :redix_city)
-    {:ok, rds_office} = Redix.start_link(config[:rds_office], name: :redix_office)
-    {:ok, rds_agent} = Redix.start_link(config[:rds_agent], name: :redix_agent)
-    {:ok, rds_county} = Redix.start_link(config[:rds_county], name: :redix_county)
+    {:ok, rds_city} = Redix.start_link("redis://127.0.0.1:6379/4", name: :redix_city)
+    {:ok, rds_office} = Redix.start_link("redis://127.0.0.1:6379/5", name: :redix_office)
+    {:ok, rds_agent} = Redix.start_link("redis://127.0.0.1:6379/6", name: :redix_agent)
+    {:ok, rds_county} = Redix.start_link("redis://127.0.0.1:6379/8", name: :redix_county)
 
     %{
       :properties => rds,
