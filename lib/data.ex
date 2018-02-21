@@ -160,10 +160,10 @@ defmodule Dgtidx.Data do
 
     query = "select id from #{table} where sysid = ? "
     res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
-    "results #{res.num_rows}" |> IO.puts
+    #"results #{res.num_rows}" |> IO.puts
     #res |> IO.inspect
 
-    IO.puts "queryt"
+    #IO.puts "queryt"
 
     queryt = "SHOW COLUMNS FROM  #{table} "
     rest = Ecto.Adapters.SQL.query!(Dgtidx.Repo, queryt, []) #|> IO.inspect
@@ -174,7 +174,7 @@ defmodule Dgtidx.Data do
     end
     #exist_columns|> IO.inspect
 
-    IO.puts "act_pnd"
+    #IO.puts "act_pnd"
 
     if (res.num_rows <= 0) do
 
@@ -208,7 +208,7 @@ defmodule Dgtidx.Data do
       end
       keys_update = Enum.reject(keys_update, &is_nil/1)
 
-      IO.puts("keys:  #{length(keys_update)}")
+      #IO.puts("keys:  #{length(keys_update)}")
 
       data_for_update = []
       data_for_update = for {k, v} <- row  do
@@ -217,7 +217,7 @@ defmodule Dgtidx.Data do
       #data_for_update |> IO.inspect
       data_for_update = Enum.reject(data_for_update, &is_nil/1)
 
-      IO.puts("data_for_update:  #{length(data_for_update)}")
+      #IO.puts("data_for_update:  #{length(data_for_update)}")
 
       #Enum.each row, fn {k, v} ->
         #IO.puts "#{k} --> #{v}"
@@ -259,7 +259,7 @@ defmodule Dgtidx.Data do
     query = "select id from #{@idx_table_geocode} where sysid = ?"
     res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]])
           #|> IO.inspect
-    IO.puts "geocode"
+    #IO.puts "geocode"
     if (res.num_rows <= 0 && Float.parse(row[:sysid]) > 0 ) do
         Ecto.Adapters.SQL.query!(
           Dgtidx.Repo,
@@ -317,11 +317,11 @@ defmodule Dgtidx.Data do
 
     query = "select id from #{@idx_table_extra} where sysid = ?"
     res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
-    IO.puts "extra"
+    #IO.puts "extra"
 
     query_extra = "SHOW COLUMNS FROM  #{@idx_table_extra} "
     res_extra = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query_extra, []) #|> IO.inspect
-    "results _extra #{res_extra.num_rows}" #|> IO.puts
+    #"results _extra #{res_extra.num_rows}" #|> IO.puts
     exist_columns_extra = []
     exist_columns_extra = for f <- res_extra.rows do
       exist_columns_extra ++ List.first(f)
@@ -369,7 +369,7 @@ defmodule Dgtidx.Data do
       #data_for_update_extra |> IO.inspect
       data_for_update_extra = Enum.reject(data_for_update_extra, &is_nil/1)
 
-      IO.puts("keys_extra:  #{length(keys_update_extra)}")
+      #IO.puts("keys_extra:  #{length(keys_update_extra)}")
 
       #data_for_update_extra = Enum.join(data_for_update_extra, ",")
       query = "update #{@idx_table_extra} set #{Enum.join(keys_update_extra, ",")} where sysid = ?"
@@ -383,6 +383,7 @@ defmodule Dgtidx.Data do
 		AND ( location = '' OR location IS NULL )"
     #|> Ecto.Adapters.SQL.query!([])
     #|> IO.inspect
+    :ok
   end
 
 end

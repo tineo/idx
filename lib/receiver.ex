@@ -18,7 +18,7 @@ defmodule Dgtidx.Receiver do
     ###
 
     ### Cities
-    IO.puts "Preload"
+    #IO.puts "Preload"
     query = "select name, id from idx_city"
     _preload_in_cache(query,map_rds.city)
 
@@ -38,7 +38,7 @@ defmodule Dgtidx.Receiver do
   def _preload_in_cache(query, rds) do
     res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [])
     #res |> IO.inspect
-    IO.puts("nums: #{res.num_rows}")
+    #IO.puts("nums: #{res.num_rows}")
     for c <-res.rows do
       #IO.inspect c
       {_, exists_key} = Redix.command(rds, ["EXISTS", List.first(c) ])
@@ -88,6 +88,10 @@ defmodule Dgtidx.Receiver do
     receive do
       {:basic_deliver, payload, meta} ->
         verify_payload(payload, map_rds)
+
+        IO.puts("Memory:")
+        IO.inspect(:erlang.memory[:total]/1048576)
+
         ## ACK if no errors
         AMQP.Basic.ack(channel, meta.delivery_tag) #|> IO.inspect()
         _wait_for_messages(channel, map_rds)
