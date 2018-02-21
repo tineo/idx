@@ -22,7 +22,7 @@ config :dgtidx, Dgtidx.Repo,
 
 # Configure your rabbitmq
 config :dgtidx, Dgtidx.RabbitMap,
-  url: "amqp://tineo:tineo@localhost",
+  url: "redis://127.0.0.1:6379/",
   rds: "redis://127.0.0.1:6379/3",
   rds_city: "redis://127.0.0.1:6379/4",
   rds_office: "redis://127.0.0.1:6379/5",
