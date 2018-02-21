@@ -17,6 +17,7 @@ defmodule DgtidxWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/memory", PageController, :memory_usage
   end
 
   # Other scopes may use custom stacks.
