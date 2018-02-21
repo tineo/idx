@@ -10,8 +10,6 @@ defmodule Dgtidx.RabbitMap do
 
     config  = Application.get_env(:dgtidx, __MODULE__)
 
-    IO.puts(config[:url])
-
     {:ok, connection} = AMQP.Connection.open(config[:url])
 
     {:ok, connection2} = AMQP.Connection.open(config[:url])

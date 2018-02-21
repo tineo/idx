@@ -60,3 +60,8 @@ config :dgtidx, Dgtidx.Repo,
 # Configure your rabbitmq
 config :dgtidx, Dgtidx.RabbitMap,
   url: "amqp://guest:guest@localhost"
+
+# Configure your redis
+config :dgtidx, Dgtidx.RedisMap,
+  url: "redis://127.0.0.1:6379/",
+  db: []

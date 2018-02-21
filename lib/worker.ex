@@ -15,7 +15,8 @@ defmodule Dgtidx.Worker do
   ## Server Callbacks
 
   def init(:ok) do
-    {:ok, connection} = AMQP.Connection.open("amqp://tineo:tineo@104.131.75.179")
+    config  = Application.get_env(:dgtidx, Dgtidx.RabbitMap)
+    {:ok, connection} = AMQP.Connection.open(config[:url])
     {:ok, channel} = AMQP.Channel.open(connection)
     AMQP.Queue.declare(channel, "to_process_w2", durable: true)
     AMQP.Exchange.direct(channel, "ex_w2", durable: true)

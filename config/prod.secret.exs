@@ -22,4 +22,10 @@ config :dgtidx, Dgtidx.Repo,
 
 # Configure your rabbitmq
 config :dgtidx, Dgtidx.RabbitMap,
-  url: "amqp://tineo:tineo@localhost"
+  url: "amqp://tineo:tineo@localhost",
+  rds: "redis://127.0.0.1:6379/3",
+  rds_city: "redis://127.0.0.1:6379/4",
+  rds_office: "redis://127.0.0.1:6379/5",
+  rds_agent: "redis://127.0.0.1:6379/6",
+  rds_county: "redis://127.0.0.1:6379/8"
+                                                                                                                                                                                                           {:ok, rds_county} = Redix.start_link("redis://127.0.0.1:6379/8", name: :redix_county)
