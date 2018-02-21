@@ -8,6 +8,7 @@ defmodule Dgtidx.RedisMap do
 
     config  = Application.get_env(:dgtidx, __MODULE__)
 
+    IO.inspect(config)
     {:ok, rds} = Redix.start_link(config[:rds], name: :redix)
 
     ### Redis for cache tables
