@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lib/redis_map.ex" afterPath="$PROJECT_DIR$/lib/redis_map.ex" />
+      <change beforePath="$PROJECT_DIR$/config/prod.secret.exs" afterPath="$PROJECT_DIR$/config/prod.secret.exs" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/dgtidx/ebin/" />
     <ignored path="$PROJECT_DIR$/_build/test/lib/dgtidx/ebin/" />
@@ -99,11 +99,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="prod.secret.exs" pinned="false" current-in-tab="false">
+          <file leaf-file-name="prod.secret.exs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="318">
-                  <caret line="33" column="12" lean-forward="false" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="12" />
+                <state relative-caret-position="304">
+                  <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -119,11 +119,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="redis_map.ex" pinned="false" current-in-tab="true">
+          <file leaf-file-name="redis_map.ex" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/redis_map.ex">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="15" column="62" lean-forward="true" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+                <state relative-caret-position="318">
+                  <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -221,9 +221,9 @@
         <option value="$PROJECT_DIR$/mix.exs" />
         <option value="$PROJECT_DIR$/lib/rabbit_map.ex" />
         <option value="$PROJECT_DIR$/lib/worker.ex" />
-        <option value="$PROJECT_DIR$/config/prod.secret.exs" />
         <option value="$PROJECT_DIR$/config/dev.exs" />
         <option value="$PROJECT_DIR$/lib/redis_map.ex" />
+        <option value="$PROJECT_DIR$/config/prod.secret.exs" />
       </list>
     </option>
   </component>
@@ -416,7 +416,7 @@
       <option name="presentableId" value="Default" />
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
-      <workItem from="1518800830550" duration="34029000" />
+      <workItem from="1518800830550" duration="34117000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -488,11 +488,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519232711438</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="reset">
+      <created>1519233060929</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1519233060929</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116537000" />
+    <option name="totallyTimeSpent" value="116625000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1797" height="1020" extended-state="0" />
@@ -571,7 +578,8 @@
     <MESSAGE value="edit config" />
     <MESSAGE value="edit config redis" />
     <MESSAGE value="add inspect" />
-    <option name="LAST_COMMIT_MESSAGE" value="add inspect" />
+    <MESSAGE value="reset" />
+    <option name="LAST_COMMIT_MESSAGE" value="reset" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -912,14 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="33" column="12" lean-forward="false" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/rabbit_map.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -946,8 +946,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/redis_map.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="62" lean-forward="true" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+        <state relative-caret-position="318">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
