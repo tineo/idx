@@ -238,7 +238,7 @@ defmodule Dgtidx.Parser do
       |> reverse_put(idx_row, :img_cnt)
 
     idx_row =
-      (if ( String.to_integer(row["PhotoCount"]) > 0 ), do: Enum.join([row["MLSNumber"],"_","1.jpg"],""), else: "")
+      (if ( row["PhotoCount"] != "" && String.to_integer(row["PhotoCount"]) > 0 ), do: Enum.join([row["MLSNumber"],"_","1.jpg"],""), else: "")
       #|> IO.puts #image
       |> reverse_put(idx_row, :image1)
 
