@@ -47,6 +47,12 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
+config :dgtidx,
+  queue: "to_process_w2",
+  exchange: "ex_w2",
+  queue_full: "",
+  exchange_full: ""
+
 # Configure your database
 config :dgtidx, Dgtidx.Repo,
   adapter: Ecto.Adapters.MySQL,

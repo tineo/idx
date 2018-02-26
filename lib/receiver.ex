@@ -68,10 +68,12 @@ defmodule Dgtidx.Receiver do
        {_, saved_hash} = Redix.command(rds, ["GET", row["Matrix_Unique_ID"]])
        (if ( cur_hash  != saved_hash) do
           IO.puts("*****Updated!*****")
+
           Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
           Dgtidx.Parser.parse(row, map_rds)
         end)
      end)
+    :ok
   end
 
   @doc """
@@ -88,9 +90,6 @@ defmodule Dgtidx.Receiver do
     receive do
       {:basic_deliver, payload, meta} ->
         verify_payload(payload, map_rds)
-
-        IO.puts("Memory:")
-        IO.inspect(:erlang.memory[:total]/1048576)
 
         ## ACK if no errors
         AMQP.Basic.ack(channel, meta.delivery_tag) #|> IO.inspect()

@@ -39,9 +39,9 @@ defmodule Dgtidx.RabbitMap do
     AMQP.Basic.consume(channel, queue_name4, nil, no_ack: false)
 
     [
-      channel,
-      channel2,
-      channel3
+      channel#,
+      #channel2,
+      #channel3
     ]
 
   end

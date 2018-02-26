@@ -1,6 +1,9 @@
 defmodule Dgtidx.Worker do
   use GenServer
 
+  @queue  Application.get_env(:dgtidx, :queue)
+  @exchange  Application.get_env(:dgtidx, :exchange)
+
   ## Client API
 
   def start_link do
@@ -18,9 +21,9 @@ defmodule Dgtidx.Worker do
     config  = Application.get_env(:dgtidx, Dgtidx.RabbitMap)
     {:ok, connection} = AMQP.Connection.open(config[:url])
     {:ok, channel} = AMQP.Channel.open(connection)
-    AMQP.Queue.declare(channel, "to_process_w2", durable: true)
-    AMQP.Exchange.direct(channel, "ex_w2", durable: true)
-    AMQP.Queue.bind(channel, "to_process_w2", "ex_w2")
+    AMQP.Queue.declare(channel, @queue, durable: true)
+    AMQP.Exchange.direct(channel, @exchange, durable: true)
+    AMQP.Queue.bind(channel, @queue, @exchange)
 
     {:ok, %{channel: channel, connection: connection} }
   end
@@ -29,7 +32,7 @@ defmodule Dgtidx.Worker do
     IO.puts "publish..."
     IO.puts message
     IO.inspect state.channel
-    AMQP.Basic.publish(state.channel, "ex_w2", "", message)
+    AMQP.Basic.publish(state.channel, @exchange, "", message)
     {:noreply, state}
   end
 
