@@ -157,7 +157,8 @@ defmodule Dgtidx.Data do
     #        }
     data_keys = []
     data_values = []
-
+    IO.inspect(":sysid]")
+    IO.inspect(row[:sysid])
     query = "select id from #{table} where sysid = ? "
     res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
     #"results #{res.num_rows}" |> IO.puts
