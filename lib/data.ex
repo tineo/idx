@@ -27,7 +27,36 @@ defmodule Dgtidx.Data do
     "virtual_tour", "area", "address_map",
     "lat", "lng"]
 
-  def in_list(element,list) do
+
+  #function validate_images($mls_num, $img_cnt) {
+  # $list = array();
+  # for ($i = 1; $i <= $img_cnt; $i++) {
+  #  $list[] = $mls_num . '_' . $i . '.jpg';
+  # }
+  # $imagens = serialize($list);
+  # return  $imagens;
+  #}
+
+  def validate_images(mls_num, img_cnt) do
+    {inumber, _} = img_cnt
+    imagens = []
+
+    IO.puts("mls_num")
+    IO.inspect(mls_num)
+    IO.inspect("#{mls_num}_#{inumber}.jpg")
+    for x <- 1 .. inumber do
+      "#{mls_num}_#{x}.jpg" |> IO.inspect()
+      "#{mls_num}_#{x}.jpg" |> in_list(imagens)
+    end
+
+    Poison.encode(imagens)
+  end
+
+  def in_list2(element, list) do
+    list ++ element
+  end
+
+  def in_list(element, list) do
     List.insert_at(list, 0, element)
   end
 
@@ -90,7 +119,7 @@ defmodule Dgtidx.Data do
       more_info = %{}
       data_extra = %{}
 
-
+      images = if ( row.img_cnt > 0), do: validate_images(row.mls_num, Integer.parse(row.img_cnt)), else: "";
       data_extra = data_extra
                    |> Map.put(:sysid, row.sysid)
                    |> Map.put(:type, "")
@@ -104,7 +133,7 @@ defmodule Dgtidx.Data do
                    |> Map.put(:assoc_fee, row.assoc_fee)
                    |> Map.put(:virtual_tour, row.virtual_tour)
                    |> Map.put(:area, row.area)
-                   |> Map.put(:imagens, "")
+                   |> Map.put(:imagens, images)
                    |> Map.put(:address_map, row.address_map)
                    |> Map.put(:date_update, row.last_updated)
 

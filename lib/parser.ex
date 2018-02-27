@@ -522,18 +522,11 @@ defmodule Dgtidx.Parser do
       #|> datetime_to_str #last_updated
       |> reverse_put(idx_row, :last_updated)
 
-    now = Timex.now
     today = DateTime.utc_now
-    da = Enum.join [today.year, today.month, today.day], "-"
-    tm = Enum.join [today.hour, today.minute, today.minute], ":"
-    dt = Enum.join [da, tm], " "
     #IO.puts
-    idx_row =
-    #  Timex.now
-    #  |> Timex.format!("{YYYY}-{M}-{D} {HH}:{mm}") #date_proccess
-    dt
+    idx_row = today
+    |> datetime_to_str()
     |> reverse_put(idx_row, :date_proccess)
-
 
     #CASE Status
     #    WHEN "Active" THEN 1
@@ -757,8 +750,8 @@ defmodule Dgtidx.Parser do
     idx_row =
       Enum.join([
         row["StreetNumber"], row["StreetDirPrefix"],row["StreetName"],
-        row["City"],"'FL'", row["PostalCode"]
-      ], "' '") |> String.upcase #|> IO.puts #address_map
+        row["City"],"FL", row["PostalCode"]
+      ], " ") |> String.upcase #|> IO.puts #address_map
       |> reverse_put(idx_row, :address_map) #|> IO.puts
 
     #idx_row[:address_map]|> IO.puts
