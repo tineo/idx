@@ -43,13 +43,11 @@ defmodule Dgtidx.Data do
 
     IO.puts("mls_num")
     IO.inspect(mls_num)
-    IO.inspect("#{mls_num}_#{inumber}.jpg")
+    #IO.inspect("#{mls_num}_#{inumber}.jpg")
     for x <- 1 .. inumber do
-      "#{mls_num}_#{x}.jpg" |> IO.inspect()
       "#{mls_num}_#{x}.jpg" |> in_list(imagens)
     end
-
-    Poison.encode(imagens)
+    imagens
   end
 
   def in_list2(element, list) do

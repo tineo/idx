@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="fix parser&#10;add slug">
+    <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/lib/data.ex" afterPath="$PROJECT_DIR$/lib/data.ex" />
-      <change beforePath="$PROJECT_DIR$/lib/parser.ex" afterPath="$PROJECT_DIR$/lib/parser.ex" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/dgtidx/ebin/" />
     <ignored path="$PROJECT_DIR$/_build/test/lib/dgtidx/ebin/" />
@@ -91,8 +90,8 @@
       <file leaf-file-name="data.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/data.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="116" column="34" lean-forward="true" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="34" />
+            <state relative-caret-position="450">
+              <caret line="49" column="11" lean-forward="true" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -428,7 +427,7 @@
       <option name="presentableId" value="Default" />
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
-      <workItem from="1518800830550" duration="83586000" />
+      <workItem from="1518800830550" duration="83923000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -654,11 +653,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519765337891</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="fix parser, data&#10;add poison encoder">
+      <created>1519770713336</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1519770713336</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166094000" />
+    <option name="totallyTimeSpent" value="166431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1259" height="1056" extended-state="4" />
@@ -748,7 +754,8 @@
     <MESSAGE value="fix date in parser&#10;add isostr_to_dt" />
     <MESSAGE value="fix date in parser&#10;datetime_to_str" />
     <MESSAGE value="fix parser&#10;add slug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix parser&#10;add slug" />
+    <MESSAGE value="fix parser, data&#10;add poison encoder" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix parser, data&#10;add poison encoder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1134,8 +1141,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/data.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="116" column="34" lean-forward="true" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="34" />
+        <state relative-caret-position="450">
+          <caret line="49" column="11" lean-forward="true" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
           <folding />
         </state>
       </provider>
