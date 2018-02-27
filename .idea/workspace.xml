@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="">
+    <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="fix date in parser&#10;&quot;#{number}&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/lib/parser.ex" afterPath="$PROJECT_DIR$/lib/parser.ex" />
     </list>
@@ -50,8 +50,8 @@
       <file leaf-file-name="parser.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/parser.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="90" column="35" lean-forward="true" selection-start-line="90" selection-start-column="35" selection-end-line="90" selection-end-column="35" />
+            <state relative-caret-position="468">
+              <caret line="44" column="21" lean-forward="false" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -241,7 +241,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="49" />
     <option name="y" value="24" />
-    <option name="width" value="1440" />
+    <option name="width" value="1403" />
     <option name="height" value="1020" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -427,7 +427,7 @@
       <option name="presentableId" value="Default" />
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
-      <workItem from="1518800830550" duration="72280000" />
+      <workItem from="1518800830550" duration="74609000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -632,14 +632,21 @@
       <option name="project" value="LOCAL" />
       <updated>1519752322273</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="fix date in parser&#10;add isostr_to_dt">
+      <created>1519752888396</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1519752888396</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154788000" />
+    <option name="totallyTimeSpent" value="157117000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="24" width="1440" height="1020" extended-state="0" />
+    <frame x="49" y="24" width="1403" height="1020" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -654,7 +661,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16786227" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1724392" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62416106" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Learn" active="false" anchor="left" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.32997033" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -723,7 +730,8 @@
     <MESSAGE value="sout date in parser" />
     <MESSAGE value="fix date in parser" />
     <MESSAGE value="fix date in parser&#10;add DateTime.from_iso8601" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix date in parser&#10;add DateTime.from_iso8601" />
+    <MESSAGE value="fix date in parser&#10;add isostr_to_dt" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix date in parser&#10;add isostr_to_dt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1109,8 +1117,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/parser.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="90" column="35" lean-forward="true" selection-start-line="90" selection-start-column="35" selection-end-line="90" selection-end-column="35" />
+        <state relative-caret-position="468">
+          <caret line="44" column="21" lean-forward="false" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="21" />
           <folding />
         </state>
       </provider>

@@ -20,16 +20,31 @@ defmodule Dgtidx.Parser do
   end
 
   def str_to_valid_date(str) do
-    if (str != "") do
-      {res, dt, _} = DateTime.from_iso8601( str<>"+05:00" )
-      dt |> datetime_to_str
-      else ""
+    case DateTime.from_iso8601( str<>"+05:00" ) do
+      {:error, :invalid_format} -> ""
+      {:ok, datetime, _} -> datetime |> datetime_to_str
+    end
+  end
+
+  def str_to_datetime(str) do
+    case DateTime.from_iso8601( str<>"+05:00" ) do
+      {:error, _} -> ""
+      {:ok, datetime, _} -> datetime
+    end
+  end
+
+  def _to_2dgts(number) do
+
+    if (number < 10) do
+      "0" <> "#{number}"
+    else
+      "#{number}"
     end
   end
 
   def datetime_to_str(date) do
-    da = Enum.join [date.year, date.month, date.day], "-"
-    tm = Enum.join [date.hour, date.minute, date.minute], ":"
+    da = Enum.join [date.year, _to_2dgts(date.month), _to_2dgts(date.day)], "-"
+    tm = Enum.join [_to_2dgts(date.hour), _to_2dgts(date.minute), _to_2dgts(date.minute)], ":"
     dt = Enum.join [da, tm], " "
   end
 
@@ -84,13 +99,15 @@ defmodule Dgtidx.Parser do
     #str = row["OriginalEntryTimestamp"] <>"+05:00"
     #str |> IO.puts
     #{:ok, datetime, _} = DateTime.from_iso8601( str )
-
+    str_to_valid_date(row["OriginalEntryTimestamp"]) |> IO.inspect()
+    str_to_valid_date(row["OriginalEntryTimestamp"]) |> DateTime.from_iso8601() |> IO.inspect()
     #unix = str_to_valid_date(str) |>  DateTime.to_unix() #|> IO.puts
-    idx_row = str_to_valid_date(row["OriginalEntryTimestamp"])
-              |> isostr_to_dt()
-              |> DateTime.to_unix()
-              |> reverse_put(idx_row, :list_date)
-
+    idx_row = (if (row["OriginalEntryTimestamp"]!="") do
+                  {:ok, datetime, _} = DateTime.from_iso8601(row["OriginalEntryTimestamp"]<>"+05:00")
+                  datetime |> DateTime.to_unix()
+              else
+                ""
+              end) |> reverse_put(idx_row, :list_date)
     #CASE PropertyType
     #    WHEN "Single Family" THEN 2
     #    WHEN "Condo/Co-Op/Villa/Townhouse" THEN 1
@@ -496,14 +513,14 @@ defmodule Dgtidx.Parser do
 
     idx_row =
       str_to_valid_date(row["OriginalEntryTimestamp"])
-      |> datetime_to_str #date_create
+      #|> datetime_to_str #date_create
       |> reverse_put(idx_row, :date_create)
 
     #IO.puts
     #{:ok, dt, _} = DateTime.from_iso8601( row["MatrixModifiedDT"]<>"+05:00" )
     idx_row =
       str_to_valid_date(row["MatrixModifiedDT"])
-      |> datetime_to_str #last_updated
+      #|> datetime_to_str #last_updated
       |> reverse_put(idx_row, :last_updated)
 
     now = Timex.now
