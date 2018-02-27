@@ -82,7 +82,8 @@ defmodule Dgtidx.Parser do
 
     #unix = str_to_valid_date(str) |>  DateTime.to_unix() #|> IO.puts
     idx_row = str_to_valid_date(row["OriginalEntryTimestamp"])
-              |>  DateTime.to_unix()
+              |> DateTime.from_iso8601()
+              |> DateTime.to_unix()
               |> reverse_put(idx_row, :list_date)
 
     #CASE PropertyType
