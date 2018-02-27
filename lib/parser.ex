@@ -34,7 +34,6 @@ defmodule Dgtidx.Parser do
   end
 
   def _to_2dgts(number) do
-
     if (number < 10) do
       "0" <> "#{number}"
     else
@@ -295,7 +294,7 @@ defmodule Dgtidx.Parser do
     #IO.puts
     idx_row =
       ####row["SqFtLivArea"] #sqft
-      0
+     (if (row["SqFtLivArea"]!=""), do: row["SqFtLivArea"], else: 0)
       |> reverse_put(idx_row, :sqft)
 
     #IO.puts
@@ -560,16 +559,17 @@ defmodule Dgtidx.Parser do
     #) AS slug,
     #0 AS `adom`,
     idx_row =
-      #( if ( row["UnitNumber"] != "" ),
-      #    do: Enum.join([
-      #      row["StreetNumber"],row["StreetDirPrefix"],row["StreetName"],row["UnitNumber"],
-      #      row["City"],"FL",row["PostalCode"],row["MLSNumber"]
-      #    ], "-") |> String.downcase |> String.replace(",", "-") |> String.replace(" ", "-") ,
-      #    else: Enum.join([
-      #      row["StreetNumber"],row["StreetDirPrefix"],row["StreetName"],
-      #      row["City"],"FL",row["PostalCode"],row["MLSNumber"]
-      #    ], "-") |> String.downcase |> String.replace(",", "-") |> String.replace(" ", "-")) #|> IO.puts
-      0
+      ( if ( row["UnitNumber"] != "" ),
+          do: Enum.join([
+            row["StreetNumber"],row["StreetDirPrefix"],row["StreetName"],row["UnitNumber"],
+            row["City"],"FL",row["PostalCode"],row["MLSNumber"]
+          ], "-") |> String.downcase |> String.replace(",", "-") |> String.replace(" ", "-") ,
+          else: Enum.join([
+            row["StreetNumber"],row["StreetDirPrefix"],row["StreetName"],
+            row["City"],"FL",row["PostalCode"],row["MLSNumber"]
+          ], "-") |> String.downcase |> String.replace(",", "-") |> String.replace(" ", "-")) #|> IO.puts
+      |> reverse_put(idx_row, :slug)
+    idx_row =  0
       |> reverse_put(idx_row, :adom)
 
     #IO.puts
