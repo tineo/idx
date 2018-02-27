@@ -75,12 +75,15 @@ defmodule Dgtidx.Parser do
       |> reverse_put(idx_row, :date_property)
 
     #"2017-10-15T14:54:50.537"
-    row["OriginalEntryTimestamp"] #|> IO.puts
-    str = row["OriginalEntryTimestamp"] <>"+05:00"
-    str |> IO.puts
-    {:ok, datetime, _} = DateTime.from_iso8601( str )
-    unix = DateTime.to_unix(datetime) #|> IO.puts
-    idx_row = unix |> reverse_put(idx_row, :list_date)
+    #row["OriginalEntryTimestamp"] #|> IO.puts
+    #str = row["OriginalEntryTimestamp"] <>"+05:00"
+    #str |> IO.puts
+    #{:ok, datetime, _} = DateTime.from_iso8601( str )
+
+    #unix = str_to_valid_date(str) |>  DateTime.to_unix() #|> IO.puts
+    idx_row = str_to_valid_date(row["OriginalEntryTimestamp"])
+              |>  DateTime.to_unix()
+              |> reverse_put(idx_row, :list_date)
 
     #CASE PropertyType
     #    WHEN "Single Family" THEN 2
@@ -483,16 +486,17 @@ defmodule Dgtidx.Parser do
       |> reverse_put(idx_row, :style)
 
     #IO.puts
-    {:ok, dt, _} = DateTime.from_iso8601( row["OriginalEntryTimestamp"]<>"+05:00" )
+    #{:ok, dt, _} = DateTime.from_iso8601( row["OriginalEntryTimestamp"]<>"+05:00" )
+
     idx_row =
-      dt
+      str_to_valid_date(row["OriginalEntryTimestamp"])
       |> datetime_to_str #date_create
       |> reverse_put(idx_row, :date_create)
 
     #IO.puts
-    {:ok, dt, _} = DateTime.from_iso8601( row["MatrixModifiedDT"]<>"+05:00" )
+    #{:ok, dt, _} = DateTime.from_iso8601( row["MatrixModifiedDT"]<>"+05:00" )
     idx_row =
-      dt
+      str_to_valid_date(row["MatrixModifiedDT"])
       |> datetime_to_str #last_updated
       |> reverse_put(idx_row, :last_updated)
 
