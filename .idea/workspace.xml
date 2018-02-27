@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/config/prod.secret.exs" afterPath="$PROJECT_DIR$/config/prod.secret.exs" />
       <change beforePath="$PROJECT_DIR$/lib/parser.ex" afterPath="$PROJECT_DIR$/lib/parser.ex" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/dgtidx/ebin/" />
@@ -51,8 +50,8 @@
       <file leaf-file-name="parser.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/parser.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+            <state relative-caret-position="396">
+              <caret line="79" column="4" lean-forward="false" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -428,7 +427,7 @@
       <option name="presentableId" value="Default" />
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
-      <workItem from="1518800830550" duration="67467000" />
+      <workItem from="1518800830550" duration="68363000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -605,11 +604,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519686575944</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="board number">
+      <created>1519744947053</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1519744947053</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149975000" />
+    <option name="totallyTimeSpent" value="150871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1635" height="1020" extended-state="0" />
@@ -692,7 +698,8 @@
     <MESSAGE value="xD" />
     <MESSAGE value="add redis config" />
     <MESSAGE value="memory" />
-    <option name="LAST_COMMIT_MESSAGE" value="memory" />
+    <MESSAGE value="board number" />
+    <option name="LAST_COMMIT_MESSAGE" value="board number" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1078,8 +1085,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/parser.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        <state relative-caret-position="396">
+          <caret line="79" column="4" lean-forward="false" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
           <folding />
         </state>
       </provider>

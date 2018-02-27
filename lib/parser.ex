@@ -77,7 +77,7 @@ defmodule Dgtidx.Parser do
     #"2017-10-15T14:54:50.537"
     row["OriginalEntryTimestamp"] #|> IO.puts
     str = row["OriginalEntryTimestamp"] <>"+05:00"
-    #str |> IO.puts
+    str |> IO.puts
     {:ok, datetime, _} = DateTime.from_iso8601( str )
     unix = DateTime.to_unix(datetime) #|> IO.puts
     idx_row = unix |> reverse_put(idx_row, :list_date)
