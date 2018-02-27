@@ -9,8 +9,9 @@ use Mix.Config
 # kept out of version control and might be hard to recover
 # or recreate for your teammates (or yourself later on).
 config :dgtidx,
-  queue: "to_process_w2",
-  exchange: "ex_w2",
+  board: "1",
+  queue: "to_process_w1",
+  exchange: "ex_w1",
   queue_full: "",
   exchange_full: ""
 
@@ -30,7 +31,7 @@ config :dgtidx, Dgtidx.Repo,
 
 # Configure your rabbitmq
 config :dgtidx, Dgtidx.RabbitMap,
-  url: "amqp://guest:guest@localhost"
+  url: "amqp://tineo:tineo@104.131.75.179"
 
 # Configure your redis
 config :dgtidx, Dgtidx.RedisMap,

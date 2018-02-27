@@ -1,7 +1,7 @@
 defmodule Dgtidx.Parser do
   @moduledoc false
 
-  @board_id 2
+  @board_id Application.get_env(:dgtidx, :board)
   @idx_mode_debug false
   @idx_limit_rows 3500
 
