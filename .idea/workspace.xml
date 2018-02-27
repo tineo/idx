@@ -50,8 +50,8 @@
       <file leaf-file-name="parser.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/parser.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="85" column="17" lean-forward="false" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+            <state relative-caret-position="432">
+              <caret line="90" column="35" lean-forward="true" selection-start-line="90" selection-start-column="35" selection-end-line="90" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -427,7 +427,7 @@
       <option name="presentableId" value="Default" />
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
-      <workItem from="1518800830550" duration="71713000" />
+      <workItem from="1518800830550" duration="72280000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -625,11 +625,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519752139893</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="fix date in parser&#10;add DateTime.from_iso8601">
+      <created>1519752322273</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1519752322273</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154221000" />
+    <option name="totallyTimeSpent" value="154788000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1440" height="1020" extended-state="0" />
@@ -715,7 +722,8 @@
     <MESSAGE value="board number" />
     <MESSAGE value="sout date in parser" />
     <MESSAGE value="fix date in parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix date in parser" />
+    <MESSAGE value="fix date in parser&#10;add DateTime.from_iso8601" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix date in parser&#10;add DateTime.from_iso8601" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1101,8 +1109,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/parser.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="85" column="17" lean-forward="false" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+        <state relative-caret-position="432">
+          <caret line="90" column="35" lean-forward="true" selection-start-line="90" selection-start-column="35" selection-end-line="90" selection-end-column="35" />
           <folding />
         </state>
       </provider>

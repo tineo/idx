@@ -14,6 +14,11 @@ defmodule Dgtidx.Parser do
   @idx_table_worka 'data_listings'
   @idx_table_prod 'testNewIdx'
 
+  def isostr_to_dt(str) do
+    {:ok, datetime, _} = DateTime.from_iso8601( str )
+    datetime
+  end
+
   def str_to_valid_date(str) do
     if (str != "") do
       {res, dt, _} = DateTime.from_iso8601( str<>"+05:00" )
@@ -82,7 +87,7 @@ defmodule Dgtidx.Parser do
 
     #unix = str_to_valid_date(str) |>  DateTime.to_unix() #|> IO.puts
     idx_row = str_to_valid_date(row["OriginalEntryTimestamp"])
-              |> DateTime.from_iso8601()
+              |> isostr_to_dt()
               |> DateTime.to_unix()
               |> reverse_put(idx_row, :list_date)
 
