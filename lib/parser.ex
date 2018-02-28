@@ -14,6 +14,11 @@ defmodule Dgtidx.Parser do
   @idx_table_worka 'data_listings'
   @idx_table_prod 'testNewIdx'
 
+  def dt_only_date(datetime) do
+    {:ok, new_date, 0} = DateTime.from_iso8601("#{datetime.year}-#{_to_2dgts(datetime.month)}-#{_to_2dgts(datetime.day)}T00:00:00Z")
+    new_date
+  end
+  
   def isostr_to_dt(str) do
     {:ok, datetime, _} = DateTime.from_iso8601( str )
     datetime
@@ -53,7 +58,7 @@ defmodule Dgtidx.Parser do
 
   def check_exists_in_redis(rds, data) do
     {_, exists_key} = Redix.command(rds, ["EXISTS", data.code_or_name])
-    exists_key |> IO.inspect
+    #exists_key |> IO.inspect
     if ( exists_key == 0 ) do
       IO.puts("#New! #{data.table}")
       #Maybe Redis is empty?
@@ -62,7 +67,7 @@ defmodule Dgtidx.Parser do
       if ( res.num_rows == 0) do
         #New data
         query = "insert into #{data.table} (#{data.field}) values (\"#{data.code_or_name}\")" #|> IO.puts
-        query |> IO.puts
+        #query |> IO.puts
         {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, []) #|> IO.inspect
         Redix.command(rds, ["SET", data.code_or_name, res.last_insert_id])
         "#{res.last_insert_id}"
@@ -98,12 +103,14 @@ defmodule Dgtidx.Parser do
     #str = row["OriginalEntryTimestamp"] <>"+05:00"
     #str |> IO.puts
     #{:ok, datetime, _} = DateTime.from_iso8601( str )
-    str_to_valid_date(row["OriginalEntryTimestamp"]) |> IO.inspect()
-    str_to_valid_date(row["OriginalEntryTimestamp"]) |> DateTime.from_iso8601() |> IO.inspect()
+
+    #str_to_valid_date(row["OriginalEntryTimestamp"]) |> IO.inspect()
+    #str_to_valid_date(row["OriginalEntryTimestamp"]) |> DateTime.from_iso8601() |> IO.inspect()
+
     #unix = str_to_valid_date(str) |>  DateTime.to_unix() #|> IO.puts
     idx_row = (if (row["OriginalEntryTimestamp"]!="") do
                   {:ok, datetime, _} = DateTime.from_iso8601(row["OriginalEntryTimestamp"]<>"+05:00")
-                  datetime |> DateTime.to_unix()
+                  datetime |> dt_only_date() |> DateTime.to_unix()
               else
                 ""
               end) |> reverse_put(idx_row, :list_date)
@@ -138,13 +145,13 @@ defmodule Dgtidx.Parser do
 
     idx_row =
       (case row["PropertyType"] do
-         "Single Family" -> 1
-         "Condo/Co-Op/Villa/Townhouse" -> 2
-         "Residential Rental" -> 6
-         "Residential Income" -> 6
-         "Residential Land/Boat Docks" -> 5
-         "Commercial/Business/Agricultural/Industrial Land" -> 5
-         "Business Opportunity" -> 5
+         "Single Family" -> 2
+         "Condo/Co-Op/Villa/Townhouse" -> 1
+         "Residential Rental" -> (if (row["UnitNumber"]!=""), do: 1, else: 2)
+         "Residential Income" -> 27
+         "Residential Land/Boat Docks" -> 26
+         "Commercial/Business/Agricultural/Industrial Land" -> 28
+         "Business Opportunity" -> 29
          _ -> cond do
                 String.contains?(row["PropTypeTypeofBuilding"], "industrial") -> 10
                 String.contains?(row["PropTypeTypeofBuilding"], "medical") -> 12
@@ -268,12 +275,12 @@ defmodule Dgtidx.Parser do
       |> reverse_put(idx_row, :image1)
 
     #IO.puts
-    idx_row = str_to_valid_date(row["PhotoModificationTimestamp"]) |> reverse_put(idx_row, :img_date1)#img_date
+    idx_row = row["PhotoModificationTimestamp"] |> reverse_put(idx_row, :img_date)#img_date
 
 
     #IO.puts
     idx_row =
-      (if (row["StreetNumber"] != ""), do: 0, else: 0) #st_number
+      (if (row["StreetNumber"] != ""), do: row["StreetNumber"], else: "") #st_number
       |> reverse_put(idx_row, :st_number)
 
     #IO.puts
@@ -320,10 +327,10 @@ defmodule Dgtidx.Parser do
     #IO.puts
     idx_row =
       row["LegalDescription"] #legal_desc`,
-      |> reverse_put(idx_row, :parking_desc)
+      |> reverse_put(idx_row, :legal_desc)
 
     ##SELECT `id` FROM idx_county WHERE `name` = CountyOrParish limit 1
-    datacounty = %{ table: "idx_agent", field: "code", code_or_name: row["CoListAgentMLSID"] }
+    datacounty = %{ table: "idx_agent", field: "name", code_or_name: row["CoListAgentMLSID"] }
     idx_row =
       (if (row["CountyOrParish"] != "") ,do: check_exists_in_redis( map_rds.county, datacounty ),else: 0)
       #|> IO.puts #county_id
@@ -345,7 +352,7 @@ defmodule Dgtidx.Parser do
       |> reverse_put(idx_row, :area)
 
     #IO.puts
-    idx_row = "" #more_info
+    idx_row = row["more_info"] #more_info
               |> reverse_put(idx_row, :more_info)
 
     #IO.puts
@@ -386,7 +393,7 @@ defmodule Dgtidx.Parser do
     { _, pattern } = Regex.compile("boat dock|private dock")
     idx_row =
       (if ( Regex.match?( pattern,
-              Enum.join([row["Remarks"], "' '", row["WaterAccess"]]))), do: 1, else: 0)
+              Enum.join([row["Remarks"], " ", row["WaterAccess"]]))), do: 1, else: 0)
       # |> IO.puts #boat_dock
       |> reverse_put(idx_row, :boat_dock)
 
@@ -462,8 +469,15 @@ defmodule Dgtidx.Parser do
 
     #IO.puts
     idx_row =
-      0 #unit_floor
+      (if (Map.has_key?(row,"UnitFloorLocation")), do: row["UnitFloorLocation"], else: 0) #unit_floor
       |> reverse_put(idx_row, :unit_floor)
+
+
+    #IO.puts
+    idx_row =
+      (if (Map.has_key?(row,"FloorDescription")), do: row["FloorDescription"], else: "") #unit_floor
+      |> reverse_put(idx_row, :floor)
+
 
     #IO.puts
     idx_row =
@@ -764,18 +778,19 @@ defmodule Dgtidx.Parser do
     idx_row = 0 |> reverse_put(idx_row, :agent_seller_id)
     idx_row = 0 |> reverse_put(idx_row, :co_agent_seller_id)
     idx_row = 0 |> reverse_put(idx_row, :fireplace)
-    idx_row = 0 |> reverse_put(idx_row, :oh_info)
+    idx_row = "" |> reverse_put(idx_row, :oh_info)
     idx_row = 0 |> reverse_put(idx_row, :equestrian)
     idx_row = 0 |> reverse_put(idx_row, :eq_num_barns)
     idx_row = 0 |> reverse_put(idx_row, :eq_num_stalls)
-    idx_row = 0 |> reverse_put(idx_row, :floor)
+
     idx_row = 0 |> reverse_put(idx_row, :rg_id)
     idx_row = 0 |> reverse_put(idx_row, :validate_image)
     idx_row = 0 |> reverse_put(idx_row, :office_seller_id)
 
-    Dgtidx.Data.process(idx_row)
-    #Dgtidx.Repo.all(Dgtidx.IdxPropertyActive) |>IO.inspect
 
+    #Dgtidx.Repo.all(Dgtidx.IdxPropertyActive) |>IO.inspect
+    #Dgtidx.Data.process(idx_row)
+    idx_row
   end
 
 end

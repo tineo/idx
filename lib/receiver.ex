@@ -62,7 +62,7 @@ defmodule Dgtidx.Receiver do
     (if ( exists_key == 0 ) do
        IO.puts("*****New!*****")
        Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
-       Dgtidx.Parser.parse(row, map_rds)
+       Dgtidx.Parser.parse(row, map_rds) |> Dgtidx.Data.process() |> IO.inspect()
      else
        #cur_hash = :crypto.hash(:md5, payload) |> Base.encode16()
        {_, saved_hash} = Redix.command(rds, ["GET", row["Matrix_Unique_ID"]])
@@ -70,7 +70,7 @@ defmodule Dgtidx.Receiver do
           IO.puts("*****Updated!*****")
 
           Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
-          Dgtidx.Parser.parse(row, map_rds)
+          Dgtidx.Parser.parse(row, map_rds) |> Dgtidx.Data.process() |> IO.inspect()
         end)
      end)
     :ok
