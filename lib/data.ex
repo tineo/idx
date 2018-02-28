@@ -117,7 +117,7 @@ defmodule Dgtidx.Data do
       data_extra = %{}
       IO.puts("img_cnt")
       IO.puts(row.img_cnt)
-      images = if ( row.img_cnt > 0), do: validate_images(row.mls_num, Integer.parse(row.img_cnt)), else: "";
+      images = if ( row.img_cnt > 0 || row.img_cnt != ""), do: validate_images(row.mls_num, Integer.parse(row.img_cnt)), else: "";
       data_extra = data_extra
                    |> Map.put(:sysid, row.sysid)
                    |> Map.put(:type, "")
@@ -141,6 +141,9 @@ defmodule Dgtidx.Data do
         if (value != ""), do: more_info = Map.put(more_info, String.to_atom(field_name),value)
       end
 
+
+      IO.puts("more_info")
+      IO.inspect(more_info)
       #if(count($more_info) > 0) {
       #  $row['more_info'] =  serialize($new_information);
       #}
