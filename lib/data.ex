@@ -218,7 +218,9 @@ defmodule Dgtidx.Data do
       #IO.puts "act_pnd"
 
       if (res.num_rows <= 0) do
-
+        #row |> IO.inspect()
+        row = (if (is_map(row)), do: row, else: (row|> Enum.chunk(2)
+                                                 |> Map.new(fn [k, v] -> {k, v} end)))
         k = row |> Map.keys #|> IO.inspect
 
         data_keys = for key <- k do
