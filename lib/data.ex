@@ -43,10 +43,9 @@ defmodule Dgtidx.Data do
 
     IO.puts("mls_num")
     IO.inspect(mls_num)
-    #IO.inspect("#{mls_num}_#{inumber}.jpg")
-    for x <- 1 .. inumber do
-      "#{mls_num}_#{x}.jpg" |> in_list(imagens)
-    end
+
+    imagens = Enum.map(1 .. inumber, fn(x) -> "#{mls_num}_#{x}.jpg" end)
+
     imagens
   end
 
@@ -116,7 +115,8 @@ defmodule Dgtidx.Data do
       #                );
       more_info = %{}
       data_extra = %{}
-
+      IO.puts("img_cnt")
+      IO.puts(row.img_cnt)
       images = if ( row.img_cnt > 0), do: validate_images(row.mls_num, Integer.parse(row.img_cnt)), else: "";
       data_extra = data_extra
                    |> Map.put(:sysid, row.sysid)
