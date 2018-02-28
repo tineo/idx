@@ -4,6 +4,7 @@
     <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/lib/data.ex" afterPath="$PROJECT_DIR$/lib/data.ex" />
+      <change beforePath="$PROJECT_DIR$/mix.exs" afterPath="$PROJECT_DIR$/mix.exs" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/dgtidx/ebin/" />
     <ignored path="$PROJECT_DIR$/_build/test/lib/dgtidx/ebin/" />
@@ -67,6 +68,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="mix.exs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mix.exs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="60" column="21" lean-forward="false" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="rabbit_map.ex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/rabbit_map.ex">
           <provider selected="true" editor-type-id="text-editor">
@@ -90,8 +101,8 @@
       <file leaf-file-name="data.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/data.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="274">
+              <caret line="124" column="45" lean-forward="false" selection-start-line="124" selection-start-column="45" selection-end-line="124" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -176,7 +187,6 @@
         <option value="$PROJECT_DIR$/config/config.exs" />
         <option value="$PROJECT_DIR$/lib/consumer.ex" />
         <option value="$PROJECT_DIR$/config/prod.exs" />
-        <option value="$PROJECT_DIR$/mix.exs" />
         <option value="$PROJECT_DIR$/lib/redis_map.ex" />
         <option value="$PROJECT_DIR$/lib/dgtidx_web/controllers/page_controller.ex" />
         <option value="$PROJECT_DIR$/lib/dgtidx_web/router.ex" />
@@ -188,6 +198,7 @@
         <option value="$PROJECT_DIR$/lib/rabbit_map.ex" />
         <option value="$PROJECT_DIR$/config/prod.secret.exs" />
         <option value="$PROJECT_DIR$/lib/parser.ex" />
+        <option value="$PROJECT_DIR$/mix.exs" />
         <option value="$PROJECT_DIR$/lib/data.ex" />
       </list>
     </option>
@@ -387,7 +398,7 @@
       <option name="presentableId" value="Default" />
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
-      <workItem from="1518800830550" duration="88478000" />
+      <workItem from="1518800830550" duration="89025000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -627,11 +638,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519771031249</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fix data&#10;add list images">
+      <created>1519834642411</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1519834642411</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170986000" />
+    <option name="totallyTimeSpent" value="171533000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1212" height="1056" extended-state="4" />
@@ -649,7 +667,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1724392" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17238422" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62416106" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Learn" active="false" anchor="left" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.32997033" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -722,7 +740,8 @@
     <MESSAGE value="fix date in parser&#10;datetime_to_str" />
     <MESSAGE value="fix parser&#10;add slug" />
     <MESSAGE value="fix parser, data&#10;add poison encoder" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix parser, data&#10;add poison encoder" />
+    <MESSAGE value="fix data&#10;add list images" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix data&#10;add list images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -994,14 +1013,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mix.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/prod.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-26">
@@ -1106,10 +1117,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mix.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="60" column="21" lean-forward="false" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/data.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="274">
+          <caret line="124" column="45" lean-forward="false" selection-start-line="124" selection-start-column="45" selection-end-line="124" selection-end-column="45" />
           <folding />
         </state>
       </provider>

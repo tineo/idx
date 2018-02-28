@@ -131,7 +131,7 @@ defmodule Dgtidx.Data do
                    |> Map.put(:assoc_fee, row.assoc_fee)
                    |> Map.put(:virtual_tour, row.virtual_tour)
                    |> Map.put(:area, row.area)
-                   |> Map.put(:imagens, images)
+                   |> Map.put(:imagens, PhpSerializer.serialize(images))
                    |> Map.put(:address_map, row.address_map)
                    |> Map.put(:date_update, row.last_updated)
 
