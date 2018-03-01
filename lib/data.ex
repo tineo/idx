@@ -115,8 +115,8 @@ defmodule Dgtidx.Data do
       #                );
       more_info = %{}
       data_extra = %{}
-      #IO.puts("img_cnt")
-      #IO.puts(row.img_cnt)
+      IO.puts("img_cnt")
+      IO.puts(row.img_cnt)
       images = if ( row.img_cnt > 0 || row.img_cnt != ""), do: validate_images(row.mls_num, Integer.parse(row.img_cnt)), else: "";
       data_extra = data_extra
                    |> Map.put(:sysid, row.sysid)
@@ -146,6 +146,7 @@ defmodule Dgtidx.Data do
       #if(count($more_info) > 0) {
       #  $row['more_info'] =  serialize($new_information);
       #}
+
       more_info = Enum.map(@listing_more_info, fn (field_name) -> case row[String.to_atom(field_name)] do
                                                                    "" -> nil
                                                                    _ -> {String.to_atom(field_name), row[String.to_atom(field_name)]}
@@ -153,12 +154,11 @@ defmodule Dgtidx.Data do
       end)
       more_info = Enum.reject(more_info, &is_nil/1)
 
+
       row = Map.put(row, :more_info, PhpSerializer.serialize(more_info))
 
-      #foreach($listing_unset as $field){
-      #  unset($row[$field]);
-      #}
-      row = Enum.reject(row, fn ({k, v}) -> Enum.member?(@listing_unset, Atom.to_string(k)) end)
+      #
+      #row = Enum.reject(row, fn ({k, v}) -> Enum.member?(@listing_unset, Atom.to_string(k)) end)
 
 
       ############################
@@ -196,10 +196,10 @@ defmodule Dgtidx.Data do
       #        }
       data_keys = []
       data_values = []
-      #IO.inspect(":sysid]")
-      #IO.inspect(row[:sysid])
+      IO.inspect(":sysid]")
+      IO.inspect(row[:sysid])
       query = "select id from #{table} where sysid = ? "
-      #IO.inspect(query)
+      IO.inspect(query)
       res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
       #"results #{res.num_rows}" |> IO.puts
       #res |> IO.inspect
@@ -218,9 +218,7 @@ defmodule Dgtidx.Data do
       #IO.puts "act_pnd"
 
       if (res.num_rows <= 0) do
-        #row |> IO.inspect()
-        row = (if (is_map(row)), do: row, else: (row|> Enum.chunk(2)
-                                                 |> Map.new(fn [k, v] -> {k, v} end)))
+
         k = row |> Map.keys #|> IO.inspect
 
         data_keys = for key <- k do
