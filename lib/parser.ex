@@ -62,13 +62,13 @@ defmodule Dgtidx.Parser do
     if ( exists_key == 0 ) do
       IO.puts("#New! #{data.table}")
       #Maybe Redis is empty?
-      query = "select #{data.field}, id from #{data.table} where #{data.field} = \"#{data.code_or_name}\"" #|> IO.puts
-      {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [])
+      query = "select #{data.field}, id from #{data.table} where #{data.field} = ? " #|> IO.puts
+      {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name])
       if ( res.num_rows == 0) do
         #New data
-        query = "insert into #{data.table} (#{data.field}) values (\"#{data.code_or_name}\")" #|> IO.puts
+        query = "insert into #{data.table} (#{data.field}) values (?)" #|> IO.puts
         #query |> IO.puts
-        {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, []) #|> IO.inspect
+        {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name]) #|> IO.inspect
         Redix.command(rds, ["SET", data.code_or_name, res.last_insert_id])
         "#{res.last_insert_id}"
       else
@@ -152,7 +152,7 @@ defmodule Dgtidx.Parser do
          "Residential Land/Boat Docks" -> 26
          "Commercial/Business/Agricultural/Industrial Land" -> 28
          "Business Opportunity" -> 29
-         _ -> cond do
+         _ -> (cond do
                 String.contains?(row["PropTypeTypeofBuilding"], "industrial") -> 10
                 String.contains?(row["PropTypeTypeofBuilding"], "medical") -> 12
                 String.contains?(row["PropTypeTypeofBuilding"], "building") -> 6
@@ -169,7 +169,7 @@ defmodule Dgtidx.Parser do
                 String.contains?(row["PropTypeTypeofBuilding"], "store") -> 18
                 String.contains?(row["PropTypeTypeofBuilding"], "adult") -> 3
                 true -> 19
-              end
+              end)
 
        end)
       |> reverse_put(idx_row, :class_id)
@@ -392,8 +392,7 @@ defmodule Dgtidx.Parser do
     ## IF ( CONCAT_WS(' ', Remarks, WaterAccess) regexp "boat dock|private dock", 1, 0) AS `boat_dock`,
     { _, pattern } = Regex.compile("boat dock|private dock")
     idx_row =
-      (if ( Regex.match?( pattern,
-              Enum.join([row["Remarks"], " ", row["WaterAccess"]]))), do: 1, else: 0)
+      (if ( Regex.match?( pattern, Enum.join([row["Remarks"], " ", row["WaterAccess"]]))), do: 1, else: 0)
       # |> IO.puts #boat_dock
       |> reverse_put(idx_row, :boat_dock)
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="">
+    <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="fix data check is map">
       <change beforePath="" afterPath="$PROJECT_DIR$/lib/logger.ex" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/config/prod.secret.exs" afterPath="$PROJECT_DIR$/config/prod.secret.exs" />
-      <change beforePath="$PROJECT_DIR$/lib/data.ex" afterPath="$PROJECT_DIR$/lib/data.ex" />
+      <change beforePath="$PROJECT_DIR$/lib/parser.ex" afterPath="$PROJECT_DIR$/lib/parser.ex" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/dgtidx/ebin/" />
     <ignored path="$PROJECT_DIR$/_build/test/lib/dgtidx/ebin/" />
@@ -53,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/lib/receiver.ex">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="55" column="39" lean-forward="true" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+              <caret line="55" column="39" lean-forward="false" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -92,7 +92,7 @@
       <file leaf-file-name="data.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/data.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="288">
               <caret line="50" column="106" lean-forward="false" selection-start-line="50" selection-start-column="106" selection-end-line="50" selection-end-column="106" />
               <folding />
             </state>
@@ -102,8 +102,8 @@
       <file leaf-file-name="parser.ex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/parser.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2790">
-              <caret line="155" column="60" lean-forward="false" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="60" />
+            <state relative-caret-position="324">
+              <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -160,7 +160,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>IO.puts</find>
       <find>IO.p</find>
       <find>status</find>
       <find>idx_table_active</find>
@@ -190,6 +189,7 @@
       <find>clas</find>
       <find>img_cnt</find>
       <find>validate_images</find>
+      <find>boat</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -223,7 +223,6 @@
         <option value="$PROJECT_DIR$/mix.exs" />
         <option value="$PROJECT_DIR$/config/dev.exs" />
         <option value="$PROJECT_DIR$/config/config.exs" />
-        <option value="$PROJECT_DIR$/lib/parser.ex" />
         <option value="$PROJECT_DIR$/lib/logger.ex" />
         <option value="$PROJECT_DIR$/lib/dgtidx/application.ex" />
         <option value="$PROJECT_DIR$/lib/dgtidx/repo.ex" />
@@ -232,6 +231,7 @@
         <option value="$PROJECT_DIR$/lib/redis_map.ex" />
         <option value="$PROJECT_DIR$/config/prod.secret.exs" />
         <option value="$PROJECT_DIR$/lib/receiver.ex" />
+        <option value="$PROJECT_DIR$/lib/parser.ex" />
         <option value="$PROJECT_DIR$/lib/data.ex" />
       </list>
     </option>
@@ -242,11 +242,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="230" />
-    <option name="y" value="319" />
-    <option name="width" value="1610" />
-    <option name="height" value="758" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="84" />
+    <option name="y" value="49" />
+    <option name="width" value="1682" />
+    <option name="height" value="937" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -432,7 +432,7 @@
       <updated>1518531744873</updated>
       <workItem from="1518531756257" duration="82508000" />
       <workItem from="1518800830550" duration="118855000" />
-      <workItem from="1519935812910" duration="654000" />
+      <workItem from="1519935812910" duration="3927000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -714,14 +714,21 @@
       <option name="project" value="LOCAL" />
       <updated>1519862896654</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="fix data check is map">
+      <created>1519936483663</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1519936483663</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202017000" />
+    <option name="totallyTimeSpent" value="205290000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="230" y="319" width="1610" height="758" extended-state="0" />
+    <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -737,7 +744,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14897698" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12767123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62416106" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Learn" active="false" anchor="left" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.32997033" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981357" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1026,6 +1033,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
           <caret line="75" column="6" lean-forward="false" selection-start-line="75" selection-start-column="6" selection-end-line="75" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1104,6 +1112,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1169,14 +1178,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/parser.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2790">
-          <caret line="155" column="60" lean-forward="false" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/dev.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1062">
@@ -1196,14 +1197,22 @@
     <entry file="file://$PROJECT_DIR$/lib/receiver.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="55" column="39" lean-forward="true" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+          <caret line="55" column="39" lean-forward="false" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/parser.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/data.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="288">
           <caret line="50" column="106" lean-forward="false" selection-start-line="50" selection-start-column="106" selection-end-line="50" selection-end-column="106" />
           <folding />
         </state>
