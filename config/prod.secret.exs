@@ -22,10 +22,21 @@ config :dgtidx, DgtidxWeb.Endpoint,
 # Configure your database
 config :dgtidx, Dgtidx.Repo,
   adapter: Ecto.Adapters.MySQL,
-  hostname: "138.197.96.25",
+  hostname: "127.0.0.1",
+  #hostname: "138.197.96.25",
   username: "root",
-  password: ~s(g&vkgm2E#Z98Us%Lima),
-  database: "idx18test",
+  #password: ~s(g&vkgm2E#Z98Us%Lima),
+  password: ~s(@noelia),
+  database: "wb2test",
+  pool_size: 15
+
+# Configure your database
+config :dgtidx, Dgtidx.RepoGeo,
+  adapter: Ecto.Adapters.MySQL,
+  hostname: "45.55.47.4",
+  username: "root",
+  password: ~s(5Ep-+z9rz&np3fHC),
+  database: "wb1",
   pool_size: 15
 
 

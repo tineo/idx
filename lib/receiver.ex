@@ -62,7 +62,7 @@ defmodule Dgtidx.Receiver do
     (if ( exists_key == 0 ) do
        IO.puts("*****New!*****")
        Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
-       Dgtidx.Parser.parse(row, map_rds) |> Dgtidx.Data.process() |> IO.inspect()
+       row |> Dgtidx.Parser.parse(map_rds) |> Dgtidx.Data.process(:inserting) |> IO.inspect()
      else
        #cur_hash = :crypto.hash(:md5, payload) |> Base.encode16()
        {_, saved_hash} = Redix.command(rds, ["GET", row["Matrix_Unique_ID"]])
@@ -70,7 +70,7 @@ defmodule Dgtidx.Receiver do
           IO.puts("*****Updated!*****")
 
           Redix.command(rds, ["SET", row["Matrix_Unique_ID"], cur_hash])
-          Dgtidx.Parser.parse(row, map_rds) |> Dgtidx.Data.process() |> IO.inspect()
+          row |> Dgtidx.Parser.parse(map_rds) |> Dgtidx.Data.process(:updating) |> IO.inspect()
         end)
      end)
     :ok
@@ -80,8 +80,9 @@ defmodule Dgtidx.Receiver do
   Get channels and Redis connection for recieve new payloads
   """
   def wait_for_messages do
+
     map_rds = Dgtidx.RedisMap.get_redis_map()
-    load_to_redis(map_rds)
+    #load_to_redis(map_rds)
     #Agent.start_link(fn -> [] end, name: :batcher)
     Enum.each(Dgtidx.RabbitMap.get_amqp_channels(), fn(channel) -> _wait_for_messages(channel, map_rds) end)
   end

@@ -93,8 +93,8 @@ defmodule Dgtidx.Data do
   @doc """
 
   """
-  def process(row) do
-
+  def process(row, type) do
+    IO.inspect(type)
     #row[:address_map] |> IO.inspect
     table = detect_status(row)
     if (table != "") do
@@ -304,21 +304,30 @@ defmodule Dgtidx.Data do
       res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]])
       #|> IO.inspect
       #IO.puts "geocode"
-      if (res.num_rows <= 0 && Float.parse(row[:sysid]) > 0 ) do
-        Ecto.Adapters.SQL.query!(
+
+      geo = (case Ecto.Adapters.SQL.query(Dgtidx.RepoGeo, "SELECT lat,lng FROM geocode WHERE sysid = ?", [row[:sysid]]) do
+        {:ok, geores } -> ( if (geores.rows == []) , do: [[]], else: geores.rows )
+        _ -> [[]]
+      end)
+
+      case {type, geo } do
+        {:inserting, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
           Dgtidx.Repo,
           "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
-          [row[:sysid],row[:lat],row[:lng]]
+          [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
         )
 
         #|> IO.inspect
-      else
 
-        Ecto.Adapters.SQL.query!(
+
+        {:updating, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
           Dgtidx.Repo,
           "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
-          [row[:lat],row[:lng],row[:sysid]]
+          [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
         )
+
+        _ -> IO.inspect("no ins no udpt")
+      #  [[]] -> nil
         #|> IO.inspect
       end
       ##############
@@ -421,12 +430,13 @@ defmodule Dgtidx.Data do
       end
 
 
-      "UPDATE #{@idx_table_geocode} AS g
+      qy = "UPDATE #{@idx_table_geocode} AS g
 		SET location = GeomFromText ( CONCAT( 'POINT(', g.lat, ' ', g.lng, ')' ) )
 		WHERE lat > 0
 		AND ( location = '' OR location IS NULL )"
       #|> Ecto.Adapters.SQL.query!([])
       #|> IO.inspect
+      Ecto.Adapters.SQL.query!(Dgtidx.Repo, qy, [])
       :ok
     end
 

@@ -10,12 +10,14 @@ defmodule Dgtidx.Application do
     children = [
       # Start the Ecto repository
       supervisor(Dgtidx.Repo, []),
+      supervisor(Dgtidx.RepoGeo, []),
       # Start the endpoint when the application starts
       supervisor(DgtidxWeb.Endpoint, []),
       # Start your own worker by calling: Dgtidx.Worker.start_link(arg1, arg2, arg3)
       # worker(Dgtidx.Worker, [arg1, arg2, arg3]),
       worker(Dgtidx.Worker, []),
-      worker(Dgtidx.Consumer, []),
+      worker(Dgtidx.Consumer, [])
+
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
