@@ -26,7 +26,7 @@ defmodule Dgtidx.RabbitMap do
     AMQP.Queue.declare(channel, queue_name, durable: true)
     AMQP.Exchange.direct(channel, exchange_name, durable: true)
     AMQP.Queue.bind(channel, queue_name, exchange_name)
-    #AMQP.Basic.qos(channel, prefetch_count: 1)
+    AMQP.Basic.qos(channel, prefetch_count: 100)
     AMQP.Basic.consume(channel, queue_name, nil, no_ack: false)
 
     #AMQP.Queue.declare(channel, queue_name2, durable: true)
