@@ -122,7 +122,7 @@
         <entry file="file://$PROJECT_DIR$/lib/rabbit_map.ex">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
-              <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+              <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -434,7 +434,7 @@
       <workItem from="1518800830550" duration="118855000" />
       <workItem from="1519935812910" duration="3927000" />
       <workItem from="1520021793308" duration="7282000" />
-      <workItem from="1520262667148" duration="9603000" />
+      <workItem from="1520262667148" duration="10658000" />
     </task>
     <task id="LOCAL-00001" summary="last update for 0.1">
       <created>1518799459219</created>
@@ -751,11 +751,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520284775903</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="use idx remote database">
+      <created>1520285076789</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1520285076789</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222175000" />
+    <option name="totallyTimeSpent" value="223230000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
@@ -851,9 +858,9 @@
     <MESSAGE value="fix data&#10;fix parser" />
     <MESSAGE value="fix data check is map" />
     <MESSAGE value="add geolocation" />
-    <MESSAGE value="use idx remote database" />
     <MESSAGE value="fix ins and upd geolocation" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix ins and upd geolocation" />
+    <MESSAGE value="use idx remote database" />
+    <option name="LAST_COMMIT_MESSAGE" value="use idx remote database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1186,7 +1193,7 @@
     <entry file="file://$PROJECT_DIR$/lib/rabbit_map.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
-          <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+          <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding />
         </state>
       </provider>
