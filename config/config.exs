@@ -7,7 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :dgtidx,
-  ecto_repos: [Dgtidx.Repo]
+  ecto_repos: [Dgtidx.Repo, Dgtidx.RepoGeo]
 
 # Configures the endpoint
 config :dgtidx, DgtidxWeb.Endpoint,
