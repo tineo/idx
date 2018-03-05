@@ -302,34 +302,48 @@ defmodule Dgtidx.Data do
       #       }
       query = "select id from #{@idx_table_geocode} where sysid = ?"
       res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]])
-      #|> IO.inspect
+      #res |> IO.inspect()
       #IO.puts "geocode"
 
       geo = (case Ecto.Adapters.SQL.query(Dgtidx.RepoGeo, "SELECT lat,lng FROM geocode WHERE sysid = ?", [row[:sysid]]) do
-        {:ok, geores } -> ( if (geores.rows == []) , do: [[]], else: geores.rows )
-        _ -> [[]]
-      end)
+               {:ok, geores } -> ( if (geores.rows == []) , do: [[]], else: geores.rows )
+               _ -> [[]]
+             end)
 
-      case {type, geo } do
-        {:inserting, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
-          Dgtidx.Repo,
-          "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
-          [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
-        )
-
-        #|> IO.inspect
-
-
-        {:updating, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
+      if (res.num_rows > 0) do
+        Ecto.Adapters.SQL.query!(
           Dgtidx.Repo,
           "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
           [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
         )
+      else
 
-        _ -> IO.inspect("no ins no udpt")
-      #  [[]] -> nil
-        #|> IO.inspect
+
+        case {type, geo } do
+
+
+          {:inserting, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
+                                                   Dgtidx.Repo,
+                                                   "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
+                                                   [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
+                                                 )
+
+          #|> IO.inspect
+
+
+          {:updating, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
+                                                  Dgtidx.Repo,
+                                                  "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
+                                                  [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
+                                                )
+
+          _ -> IO.inspect("no ins no udpt")
+          #  [[]] -> nil
+          #|> IO.inspect
+        end
       end
+
+
       ##############
       # DATA EXTRA
       ##############
