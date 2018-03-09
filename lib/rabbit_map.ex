@@ -1,9 +1,13 @@
 defmodule Dgtidx.RabbitMap do
-  @moduledoc false
+  @moduledoc """
+  This module use :queue and :exchange parameters for RabbitMQ connection.
+  """
 
   @queue  Application.get_env(:dgtidx, :queue)
   @exchange  Application.get_env(:dgtidx, :exchange)
-
+  @doc """
+  return a list of channels using one or many connections.
+  """
   def get_amqp_channels() do
     queue_name = @queue
     #queue_name2 = "to_process_w2_fn"

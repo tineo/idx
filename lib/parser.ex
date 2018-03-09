@@ -1,5 +1,7 @@
 defmodule Dgtidx.Parser do
-  @moduledoc false
+  @moduledoc """
+  This module covert payload from RabbitMQ's queue to map.
+  """
 
   @board_id Application.get_env(:dgtidx, :board)
   @idx_mode_debug false

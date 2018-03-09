@@ -203,7 +203,7 @@ defmodule Dgtidx.Data do
       IO.inspect(row[:sysid])
       query = "select id from #{table} where sysid = ? "
       IO.inspect(query)
-      res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
+      #res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
       #"results #{res.num_rows}" |> IO.puts
       #res |> IO.inspect
 
@@ -219,8 +219,8 @@ defmodule Dgtidx.Data do
       #exist_columns|> IO.inspect
 
       #IO.puts "act_pnd"
-
-      if (res.num_rows <= 0) do
+      # || res.num_rows <= 0
+      if (true) do
 
         k = row |> Map.keys #|> IO.inspect
 
@@ -301,16 +301,16 @@ defmodule Dgtidx.Data do
       #           }
       #       }
       query = "select id from #{@idx_table_geocode} where sysid = ?"
-      res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]])
+      #res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]])
       #res |> IO.inspect()
       #IO.puts "geocode"
 
-      geo = (case Ecto.Adapters.SQL.query(Dgtidx.RepoGeo, "SELECT lat,lng FROM geocode WHERE sysid = ?", [row[:sysid]]) do
+      geo = (case Ecto.Adapters.SQL.query(Dgtidx.RepoGeo, "SELECT lat,lng FROM geocode WHERE sysid = ?", [ row[:sysid] ]) do
                {:ok, geores } -> ( if (geores.rows == []) , do: [[]], else: geores.rows )
                _ -> [[]]
              end)
-
-      if (res.num_rows > 0) do
+      # || res.num_rows > 0
+      if (false) do
         Ecto.Adapters.SQL.query!(
           Dgtidx.Repo,
           "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
@@ -382,8 +382,8 @@ defmodule Dgtidx.Data do
       #    $db->CloseConnection();
       #    sleep(2);
 
-      query = "select id from #{@idx_table_extra} where sysid = ?"
-      res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
+      #query = "select id from #{@idx_table_extra} where sysid = ?"
+      #res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
       #IO.puts "extra"
 
       query_extra = "SHOW COLUMNS FROM  #{@idx_table_extra} "
@@ -393,8 +393,8 @@ defmodule Dgtidx.Data do
       exist_columns_extra = for f <- res_extra.rows do
         exist_columns_extra ++ List.first(f)
       end
-
-      if (res.num_rows <= 0) do
+      #|| res.num_rows <= 0
+      if (true ) do
         data_keys_extra = []
         data_values_extra = []
 
