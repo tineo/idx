@@ -67,6 +67,7 @@ defmodule Dgtidx.Parser do
       #query = "select #{data.field}, id from #{data.table} where #{data.field} = ? " #|> IO.puts
       #{:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name])
       #if ( res.num_rows == 0) do
+      res = [ {:rows , 0} ]
       if ( true ) do
         #New data
         query = "insert into #{data.table} (#{data.field}) values (?)" #|> IO.puts
