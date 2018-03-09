@@ -59,14 +59,15 @@ defmodule Dgtidx.Parser do
   end
 
   def check_exists_in_redis(rds, data) do
-    {_, exists_key} = Redix.command(rds, ["EXISTS", data.code_or_name])
-    #exists_key |> IO.inspect
-    if ( exists_key == 0 ) do
+    #{_, exists_key} = Redix.command(rds, ["EXISTS", data.code_or_name])
+    #if ( exists_key == 0 ) do
+    if ( true ) do
       IO.puts("#New! #{data.table}")
       #Maybe Redis is empty?
-      query = "select #{data.field}, id from #{data.table} where #{data.field} = ? " #|> IO.puts
-      {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name])
-      if ( res.num_rows == 0) do
+      #query = "select #{data.field}, id from #{data.table} where #{data.field} = ? " #|> IO.puts
+      #{:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name])
+      #if ( res.num_rows == 0) do
+      if ( true ) do
         #New data
         query = "insert into #{data.table} (#{data.field}) values (?)" #|> IO.puts
         #query |> IO.puts
