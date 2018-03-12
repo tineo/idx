@@ -244,7 +244,12 @@ defmodule Dgtidx.Data do
         isign = for i <- 1..len, do: isign ++ "?"
         signs = Enum.join(isign, ",") #|> IO.puts
         query = "insert into #{table} (#{Enum.join(data_keys, ",")}) values (#{signs}) "#|> IO.puts
-        res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, data_values)
+        try do
+          res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, data_values) |> IO.inspect()
+        rescue
+          _ -> IO.puts("error")
+        end
+
 
 
 
@@ -410,7 +415,12 @@ defmodule Dgtidx.Data do
         signs = Enum.join(isign, ",") #|> IO.puts
 
         query = "insert #{@idx_table_extra} (#{Enum.join(data_keys_extra, ",")}) values (#{signs})"
-        res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, data_values_extra) #|> IO.inspect
+        try do
+          res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, data_values_extra) #|> IO.inspect
+        rescue
+          _ -> IO.puts("error")
+        end
+
 
       else
         data_for_update_extra = []
