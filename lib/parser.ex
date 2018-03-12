@@ -56,34 +56,41 @@ defmodule Dgtidx.Parser do
     Map.put(map,key, value)
   end
 
-  def check_exists_in_redis(rds, data) do
-    {_, exists_key} = Redix.command(rds, ["EXISTS", data.code_or_name])
-    #exists_key |> IO.inspect
-    if ( exists_key == 0 ) do
-      IO.puts("#New! #{data.table}")
-      #Maybe Redis is empty?
-      query = "select #{data.field}, id from #{data.table} where #{data.field} = ? " #|> IO.puts
-      {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name])
-      if ( res.num_rows == 0) do
-        #New data
-        query = "insert into #{data.table} (#{data.field}) values (?)" #|> IO.puts
-        #query |> IO.puts
-        {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name]) #|> IO.inspect
-        Redix.command(rds, ["SET", data.code_or_name, res.last_insert_id])
-        "#{res.last_insert_id}"
-      else
-        #Refill Redis from database
-        id = res.rows |> List.first |> List.last
-        Redix.command(rds, ["SET", data.code_or_name, id])
-        id
-      end
-    else
-      {_, saved_id} = Redix.command(rds, ["GET", data.code_or_name])
-      "#{saved_id}"
-    end
+  def check_exists(rds, data, cache \\ true) do
+    (if (!cache) do
+       #New data
+       query = "insert into #{data.table} (#{data.field}) values (?)" #|> IO.puts
+       {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name]) #|> IO.inspect
+       "#{res.last_insert_id}"
+     else
+       ({_, exists_key} = Redix.command(rds, ["EXISTS", data.code_or_name])
+        #exists_key |> IO.inspect
+        if ( exists_key == 0 ) do
+          IO.puts("#New! #{data.table}")
+          #Maybe Redis is empty?
+          query = "select #{data.field}, id from #{data.table} where #{data.field} = ? " #|> IO.puts
+          {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name])
+          if ( res.num_rows == 0) do
+            #New data
+            query = "insert into #{data.table} (#{data.field}) values (?)" #|> IO.puts
+            #query |> IO.puts
+            {:ok, res} = Ecto.Adapters.SQL.query(Dgtidx.Repo, query, [data.code_or_name]) #|> IO.inspect
+            Redix.command(rds, ["SET", data.code_or_name, res.last_insert_id])
+            "#{res.last_insert_id}"
+          else
+            #Refill Redis from database
+            id = res.rows |> List.first |> List.last
+            Redix.command(rds, ["SET", data.code_or_name, id])
+            id
+          end
+        else
+          {_, saved_id} = Redix.command(rds, ["GET", data.code_or_name])
+          "#{saved_id}"
+        end)
+     end)
   end
 
-  def parse(row, map_rds) do
+  def parse(row, map_rds, cache \\ true) do
 
     idx_row = Map.new()
     rds = Map.get(map_rds, :properties)
@@ -184,28 +191,28 @@ defmodule Dgtidx.Parser do
     datacity = %{ table: "idx_city", field: "name", code_or_name: row["City"] }
     idx_row =
       #(if (row["City"] != ""),do: row["City"], else: 0) #city_id
-      (if (row["City"] != ""), do: check_exists_in_redis( map_rds.city, datacity ) , else: 0) #city_id
+      (if (row["City"] != ""), do: check_exists( map_rds.city, datacity, cache ) , else: 0) #city_id
       |> reverse_put(idx_row, :city_id)
 
     ## SELECT `id` FROM idx_office WHERE `code` = ListOfficeMLSID limit 1
     #IO.puts
     dataoffice = %{ table: "idx_office", field: "code", code_or_name: row["ListOfficeMLSID"] }
     idx_row =
-      (if (row["ListOfficeMLSID"]), do: check_exists_in_redis( map_rds.office, dataoffice ), else: 0) #office_id
+      (if (row["ListOfficeMLSID"]), do: check_exists( map_rds.office, dataoffice, cache ), else: 0) #office_id
       |> reverse_put(idx_row, :office_id)
 
     ## SELECT `id` FROM idx_agent WHERE `code` = ListAgentMLSID limit 1
     #IO.puts
     dataagent = %{ table: "idx_agent", field: "code", code_or_name: row["ListAgentMLSID"] }
     idx_row =
-      (if (row["ListAgentMLSID"]), do: check_exists_in_redis( map_rds.agent, dataagent ), else: 0) #agent_id
+      (if (row["ListAgentMLSID"]), do: check_exists( map_rds.agent, dataagent, cache ), else: 0) #agent_id
       |> reverse_put(idx_row, :agent_id)
 
     ## SELECT `id` FROM idx_agent WHERE `code` = CoListAgentMLSID limit 1
     #IO.puts
     dataagent = %{ table: "idx_agent", field: "code", code_or_name: row["CoListAgentMLSID"] }
     idx_row =
-      (if (row["CoListAgentMLSID"] != ""), do: check_exists_in_redis( map_rds.agent, dataagent ), else: 0) #co_agent_id
+      (if (row["CoListAgentMLSID"] != ""), do: check_exists( map_rds.agent, dataagent, cache ), else: 0) #co_agent_id
       |> reverse_put(idx_row, :co_agent_id)
 
 
@@ -332,7 +339,7 @@ defmodule Dgtidx.Parser do
     ##SELECT `id` FROM idx_county WHERE `name` = CountyOrParish limit 1
     datacounty = %{ table: "idx_agent", field: "name", code_or_name: row["CoListAgentMLSID"] }
     idx_row =
-      (if (row["CountyOrParish"] != "") ,do: check_exists_in_redis( map_rds.county, datacounty ),else: 0)
+      (if (row["CountyOrParish"] != "") ,do: check_exists( map_rds.county, datacounty, cache),else: 0)
       #|> IO.puts #county_id
       |> reverse_put(idx_row, :county_id)
 

@@ -93,8 +93,9 @@ defmodule Dgtidx.Data do
   @doc """
 
   """
-  def process(row, type) do
+  def process(row, type, columns, cache \\ true) do
     IO.inspect(type)
+    IO.inspect(columns)
     #row[:address_map] |> IO.inspect
     table = detect_status(row)
     if (table != "") do
@@ -118,8 +119,8 @@ defmodule Dgtidx.Data do
       #                );
       more_info = %{}
       data_extra = %{}
-      IO.puts("img_cnt")
-      IO.puts(row.img_cnt)
+      # IO.puts("img_cnt")
+      # IO.puts(row.img_cnt)
       images = if ( row.img_cnt > 0 || row.img_cnt != ""), do: validate_images(row.mls_num, row.img_cnt), else: "";
       data_extra = data_extra
                    |> Map.put(:sysid, row.sysid)
@@ -150,10 +151,10 @@ defmodule Dgtidx.Data do
       #  $row['more_info'] =  serialize($new_information);
       #}
 
-      more_info = Enum.map(@listing_more_info, fn (field_name) -> case row[String.to_atom(field_name)] do
-                                                                   "" -> nil
-                                                                   _ -> {String.to_atom(field_name), row[String.to_atom(field_name)]}
-                                                                end
+      more_info = Enum.map(@listing_more_info, fn (field_name) -> (case row[String.to_atom(field_name)] do
+                                                                     "" -> nil
+                                                                     _ -> {String.to_atom(field_name), row[String.to_atom(field_name)]}
+                                                                   end)
       end)
       more_info = Enum.reject(more_info, &is_nil/1)
 
@@ -202,25 +203,27 @@ defmodule Dgtidx.Data do
       IO.inspect(":sysid]")
       IO.inspect(row[:sysid])
       query = "select id from #{table} where sysid = ? "
-      IO.inspect(query)
-      res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
+      #IO.inspect(query)
+      res = (if (!cache), do: %{:num_rows => 0}, else: Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]])) #|> IO.inspect
+
       #"results #{res.num_rows}" |> IO.puts
       #res |> IO.inspect
 
       #IO.puts "queryt"
 
-      queryt = "SHOW COLUMNS FROM  #{table} "
-      rest = Ecto.Adapters.SQL.query!(Dgtidx.Repo, queryt, []) #|> IO.inspect
-      "results #{rest.num_rows}" #|> IO.puts
-      exist_columns = []
-      exist_columns = for f <- rest.rows do
-        exist_columns ++ List.first(f)
-      end
-      #exist_columns|> IO.inspect
+      #queryt = "SHOW COLUMNS FROM  #{table} "
+      #rest = Ecto.Adapters.SQL.query!(Dgtidx.Repo, queryt, []) #|> IO.inspect
+      #"results #{rest.num_rows}" #|> IO.puts
+      #exist_columns = []
+      #exist_columns = for f <- rest.rows do
+      #  exist_columns ++ List.first(f)
+      #end
+      exist_columns = columns["#{table}"]
+      exist_columns|> IO.inspect
 
       #IO.puts "act_pnd"
 
-      if (res.num_rows <= 0) do
+      if (!cache || res.num_rows <= 0) do
 
         k = row |> Map.keys #|> IO.inspect
 
@@ -305,11 +308,10 @@ defmodule Dgtidx.Data do
       #res |> IO.inspect()
       #IO.puts "geocode"
 
-      geo = (case Ecto.Adapters.SQL.query(Dgtidx.RepoGeo, "SELECT lat,lng FROM geocode WHERE sysid = ?", [row[:sysid]]) do
+      geo = (case Ecto.Adapters.SQL.query(Dgtidx.RepoGeo, "SELECT lat, lng FROM geocode WHERE sysid = ?", [row[:sysid]]) do
                {:ok, geores } -> ( if (geores.rows == []) , do: [[]], else: geores.rows )
                _ -> [[]]
              end)
-
       if (res.num_rows > 0) do
         Ecto.Adapters.SQL.query!(
           Dgtidx.Repo,
@@ -317,26 +319,18 @@ defmodule Dgtidx.Data do
           [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
         )
       else
-
-
         case {type, geo } do
-
-
           {:inserting, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
                                                    Dgtidx.Repo,
                                                    "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
                                                    [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
                                                  )
-
           #|> IO.inspect
-
-
           {:updating, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
                                                   Dgtidx.Repo,
                                                   "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
                                                   [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
                                                 )
-
           _ -> IO.inspect("no ins no udpt")
           #  [[]] -> nil
           #|> IO.inspect
