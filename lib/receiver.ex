@@ -10,8 +10,8 @@ defmodule Dgtidx.Receiver do
   @idx_table_pending "idx_property_pending"
   @idx_table_rented "idx_property_rented"
 
-  @queue_name Application.get_env(:dgtidx, :queue)
-  @queue_name_full Application.get_env(:dgtidx, :queue_full)
+  @ex_name Application.get_env(:dgtidx, :exchange)
+  @ex_name_full Application.get_env(:dgtidx, :exchange_full)
 
   @doc """
   Using `map_rds` to get all elements from a table and save these rows in Redis
@@ -122,8 +122,8 @@ defmodule Dgtidx.Receiver do
       {:basic_deliver, payload, meta} ->
 
         case meta.exchange do
-          @queue_name -> verify_payload(payload, map_rds, columns)
-          @queue_name_full -> verify_payload(payload, map_rds, columns, false)
+          @ex_name -> verify_payload(payload, map_rds, columns)
+          @ex_name_full -> verify_payload(payload, map_rds, columns, false)
         end
         #verify_payload(payload, map_rds, columns)
         #meta.exchange |> IO.inspect()

@@ -4,8 +4,6 @@
     <list default="true" id="0fd73a10-e807-438c-9ca9-e35ee9485bb3" name="Default" comment="use idx remote database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/config/prod.secret.exs" afterPath="$PROJECT_DIR$/config/prod.secret.exs" />
-      <change beforePath="$PROJECT_DIR$/lib/data.ex" afterPath="$PROJECT_DIR$/lib/data.ex" />
-      <change beforePath="$PROJECT_DIR$/lib/parser.ex" afterPath="$PROJECT_DIR$/lib/parser.ex" />
       <change beforePath="$PROJECT_DIR$/lib/receiver.ex" afterPath="$PROJECT_DIR$/lib/receiver.ex" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/dgtidx/ebin/" />
@@ -50,11 +48,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="prod.secret.exs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="prod.secret.exs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="162">
+              <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -70,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="receiver.ex" pinned="false" current-in-tab="false">
+      <file leaf-file-name="receiver.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/receiver.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="79" column="69" lean-forward="true" selection-start-line="79" selection-start-column="69" selection-end-line="79" selection-end-column="69" />
+            <state relative-caret-position="598">
+              <caret line="125" column="23" lean-forward="false" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -129,8 +127,8 @@
       <find>check_exists</find>
       <find>SQL</find>
       <find>show co</find>
-      <find>_preload_in_cache</find>
       <find>show</find>
+      <find>_preload_in_cache</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -384,14 +382,7 @@
       <workItem from="1520021793308" duration="7282000" />
       <workItem from="1520262667148" duration="12254000" />
       <workItem from="1520456309768" duration="22985000" />
-      <workItem from="1520889948309" duration="6953000" />
-    </task>
-    <task id="LOCAL-00002" summary="add docs">
-      <created>1518821918697</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1518821918697</updated>
+      <workItem from="1520889948309" duration="7201000" />
     </task>
     <task id="LOCAL-00003" summary="add db">
       <created>1518822755114</created>
@@ -729,11 +720,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520637946929</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="disable cache in redis if ecxchange full">
+      <created>1520896942908</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1520896942909</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254764000" />
+    <option name="totallyTimeSpent" value="255012000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1431" height="1056" extended-state="4" />
@@ -806,7 +804,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edit config redis" />
     <MESSAGE value="add inspect" />
     <MESSAGE value="reset" />
     <MESSAGE value="xD" />
@@ -831,7 +828,8 @@
     <MESSAGE value="remove SQL selects" />
     <MESSAGE value="use idx remote database" />
     <MESSAGE value="fix parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix parser" />
+    <MESSAGE value="disable cache in redis if ecxchange full" />
+    <option name="LAST_COMMIT_MESSAGE" value="disable cache in redis if ecxchange full" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1132,22 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/parser.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2196">
-          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/receiver.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="79" column="69" lean-forward="true" selection-start-line="79" selection-start-column="69" selection-end-line="79" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/data.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-521">
@@ -1158,8 +1140,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/prod.secret.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="162">
+          <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/parser.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2196">
+          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/receiver.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="125" column="23" lean-forward="false" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
           <folding />
         </state>
       </provider>
