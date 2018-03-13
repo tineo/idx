@@ -61,8 +61,8 @@
       <file leaf-file-name="data.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/data.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="324" column="9" lean-forward="false" selection-start-line="324" selection-start-column="9" selection-end-line="324" selection-end-column="9" />
+            <state relative-caret-position="316">
+              <caret line="321" column="34" lean-forward="false" selection-start-line="321" selection-start-column="34" selection-end-line="321" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -382,14 +382,7 @@
       <workItem from="1520021793308" duration="7282000" />
       <workItem from="1520262667148" duration="12254000" />
       <workItem from="1520456309768" duration="22985000" />
-      <workItem from="1520889948309" duration="10815000" />
-    </task>
-    <task id="LOCAL-00008" summary="edit config redis">
-      <created>1519232128437</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1519232128437</updated>
+      <workItem from="1520889948309" duration="10919000" />
     </task>
     <task id="LOCAL-00009" summary="edit config redis">
       <created>1519232388530</created>
@@ -727,11 +720,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520900091562</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="use idx remote database">
+      <created>1520900811415</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1520900811415</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258626000" />
+    <option name="totallyTimeSpent" value="258730000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
@@ -1156,8 +1156,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/data.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="324" column="9" lean-forward="false" selection-start-line="324" selection-start-column="9" selection-end-line="324" selection-end-column="9" />
+        <state relative-caret-position="316">
+          <caret line="321" column="34" lean-forward="false" selection-start-line="321" selection-start-column="34" selection-end-line="321" selection-end-column="34" />
           <folding />
         </state>
       </provider>

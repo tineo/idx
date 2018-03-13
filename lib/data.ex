@@ -318,12 +318,17 @@ defmodule Dgtidx.Data do
                _ -> [[]]
              end)
       if (!cache) do
-        Ecto.Adapters.SQL.query!(
-          Dgtidx.Repo,
-          "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
-          [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
-        )
-      else
+        try do
+          Ecto.Adapters.SQL.query!(
+            Dgtidx.Repo,
+            "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
+            [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
+          )
+        rescue
+          _ -> IO.puts("error")
+        end
+
+        else
         (if (res.num_rows > 0) do
           Ecto.Adapters.SQL.query!(
             Dgtidx.Repo,
