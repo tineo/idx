@@ -223,7 +223,7 @@ defmodule Dgtidx.Data do
 
       #IO.puts "act_pnd"
 
-      if (cache || res.num_rows <= 0) do
+      if (!cache || res.num_rows <= 0) do
 
         k = row |> Map.keys #|> IO.inspect
 
@@ -394,7 +394,7 @@ defmodule Dgtidx.Data do
       #end
       exist_columns_extra = columns[@idx_table_extra]
 
-      if (cache || res.num_rows <= 0) do
+      if (!cache || res.num_rows <= 0) do
         data_keys_extra = []
         data_values_extra = []
 

@@ -61,8 +61,8 @@
       <file leaf-file-name="data.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/data.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="225" column="10" lean-forward="false" selection-start-line="225" selection-start-column="10" selection-end-line="225" selection-end-column="10" />
+            <state relative-caret-position="4050">
+              <caret line="225" column="11" lean-forward="false" selection-start-line="225" selection-start-column="11" selection-end-line="225" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -71,7 +71,7 @@
       <file leaf-file-name="receiver.ex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/receiver.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2164">
+            <state relative-caret-position="1166">
               <caret line="131" column="35" lean-forward="true" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="35" />
               <folding />
             </state>
@@ -81,8 +81,8 @@
       <file leaf-file-name="parser.ex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/parser.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2196">
-              <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+            <state relative-caret-position="-656">
+              <caret line="59" column="10" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -125,10 +125,10 @@
       <find>SQL</find>
       <find>show co</find>
       <find>show</find>
-      <find>_preload_in_cache</find>
       <find>insert</find>
-      <find>select</find>
       <find>columns[</find>
+      <find>select</find>
+      <find>_preload_in_cache</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -175,8 +175,8 @@
         <option value="$PROJECT_DIR$/lib/dgtidx/repo_geo.ex" />
         <option value="$PROJECT_DIR$/lib/rabbit_map.ex" />
         <option value="$PROJECT_DIR$/config/prod.secret.exs" />
-        <option value="$PROJECT_DIR$/lib/parser.ex" />
         <option value="$PROJECT_DIR$/lib/receiver.ex" />
+        <option value="$PROJECT_DIR$/lib/parser.ex" />
         <option value="$PROJECT_DIR$/lib/data.ex" />
       </list>
     </option>
@@ -187,7 +187,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="49" />
     <option name="y" value="24" />
     <option name="width" value="1361" />
@@ -382,14 +382,7 @@
       <workItem from="1520021793308" duration="7282000" />
       <workItem from="1520262667148" duration="12254000" />
       <workItem from="1520456309768" duration="22985000" />
-      <workItem from="1520889948309" duration="9460000" />
-    </task>
-    <task id="LOCAL-00006" summary="edit config">
-      <created>1519230026284</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1519230026284</updated>
+      <workItem from="1520889948309" duration="10094000" />
     </task>
     <task id="LOCAL-00007" summary="edit config redis">
       <created>1519231979022</created>
@@ -727,14 +720,21 @@
       <option name="project" value="LOCAL" />
       <updated>1520899320090</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="enable cache in data">
+      <created>1520899465896</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1520899465896</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="257271000" />
+    <option name="totallyTimeSpent" value="257905000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="24" width="1361" height="1056" extended-state="4" />
+    <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -804,7 +804,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="xD" />
     <MESSAGE value="add redis config" />
     <MESSAGE value="memory" />
     <MESSAGE value="board number" />
@@ -829,7 +828,8 @@
     <MESSAGE value="use idx remote database" />
     <MESSAGE value="adding try" />
     <MESSAGE value="add columns[extra]" />
-    <option name="LAST_COMMIT_MESSAGE" value="add columns[extra]" />
+    <MESSAGE value="enable cache in data" />
+    <option name="LAST_COMMIT_MESSAGE" value="enable cache in data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1140,15 +1140,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/parser.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2196">
-          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        <state relative-caret-position="-656">
+          <caret line="59" column="10" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/receiver.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2164">
+        <state relative-caret-position="1166">
           <caret line="131" column="35" lean-forward="true" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="35" />
           <folding />
         </state>
@@ -1156,8 +1156,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/data.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="225" column="10" lean-forward="false" selection-start-line="225" selection-start-column="10" selection-end-line="225" selection-end-column="10" />
+        <state relative-caret-position="4050">
+          <caret line="225" column="11" lean-forward="false" selection-start-line="225" selection-start-column="11" selection-end-line="225" selection-end-column="11" />
           <folding />
         </state>
       </provider>
