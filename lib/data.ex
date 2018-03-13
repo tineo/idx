@@ -223,7 +223,7 @@ defmodule Dgtidx.Data do
 
       #IO.puts "act_pnd"
 
-      if (!cache || res.num_rows <= 0) do
+      if (cache || res.num_rows <= 0) do
 
         k = row |> Map.keys #|> IO.inspect
 
@@ -382,7 +382,7 @@ defmodule Dgtidx.Data do
       #    sleep(2);
 
       query = "select id from #{@idx_table_extra} where sysid = ?"
-      res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
+      res = (if (!cache), do: %{:num_rows => 0}, else: Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]])) #|> IO.inspect
       #IO.puts "extra"
 
       #query_extra = "SHOW COLUMNS FROM  #{@idx_table_extra} "
@@ -394,7 +394,7 @@ defmodule Dgtidx.Data do
       #end
       exist_columns_extra = columns[@idx_table_extra]
 
-      if (res.num_rows <= 0) do
+      if (cache || res.num_rows <= 0) do
         data_keys_extra = []
         data_values_extra = []
 

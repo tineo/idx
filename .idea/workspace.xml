@@ -61,8 +61,8 @@
       <file leaf-file-name="data.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/data.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="395" column="6" lean-forward="false" selection-start-line="395" selection-start-column="6" selection-end-line="395" selection-end-column="6" />
+            <state relative-caret-position="494">
+              <caret line="225" column="10" lean-forward="false" selection-start-line="225" selection-start-column="10" selection-end-line="225" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -382,14 +382,7 @@
       <workItem from="1520021793308" duration="7282000" />
       <workItem from="1520262667148" duration="12254000" />
       <workItem from="1520456309768" duration="22985000" />
-      <workItem from="1520889948309" duration="9317000" />
-    </task>
-    <task id="LOCAL-00005" summary="add secrets">
-      <created>1519148988297</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1519148988297</updated>
+      <workItem from="1520889948309" duration="9460000" />
     </task>
     <task id="LOCAL-00006" summary="edit config">
       <created>1519230026284</created>
@@ -727,11 +720,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520899142747</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="add columns[extra]">
+      <created>1520899320090</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1520899320090</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="257128000" />
+    <option name="totallyTimeSpent" value="257271000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1361" height="1056" extended-state="4" />
@@ -804,7 +804,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="reset" />
     <MESSAGE value="xD" />
     <MESSAGE value="add redis config" />
     <MESSAGE value="memory" />
@@ -829,7 +828,8 @@
     <MESSAGE value="disable cache in redis if ecxchange full" />
     <MESSAGE value="use idx remote database" />
     <MESSAGE value="adding try" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding try" />
+    <MESSAGE value="add columns[extra]" />
+    <option name="LAST_COMMIT_MESSAGE" value="add columns[extra]" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1156,8 +1156,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/data.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="395" column="6" lean-forward="false" selection-start-line="395" selection-start-column="6" selection-end-line="395" selection-end-column="6" />
+        <state relative-caret-position="494">
+          <caret line="225" column="10" lean-forward="false" selection-start-line="225" selection-start-column="10" selection-end-line="225" selection-end-column="10" />
           <folding />
         </state>
       </provider>
