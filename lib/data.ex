@@ -385,13 +385,14 @@ defmodule Dgtidx.Data do
       res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]) #|> IO.inspect
       #IO.puts "extra"
 
-      query_extra = "SHOW COLUMNS FROM  #{@idx_table_extra} "
-      res_extra = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query_extra, []) #|> IO.inspect
+      #query_extra = "SHOW COLUMNS FROM  #{@idx_table_extra} "
+      #res_extra = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query_extra, []) #|> IO.inspect
       #"results _extra #{res_extra.num_rows}" #|> IO.puts
-      exist_columns_extra = []
-      exist_columns_extra = for f <- res_extra.rows do
-        exist_columns_extra ++ List.first(f)
-      end
+      #exist_columns_extra = []
+      #exist_columns_extra = for f <- res_extra.rows do
+      #  exist_columns_extra ++ List.first(f)
+      #end
+      exist_columns_extra = columns[@idx_table_extra]
 
       if (res.num_rows <= 0) do
         data_keys_extra = []

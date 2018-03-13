@@ -61,8 +61,8 @@
       <file leaf-file-name="data.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/data.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="327" column="49" lean-forward="true" selection-start-line="327" selection-start-column="49" selection-end-line="327" selection-end-column="49" />
+            <state relative-caret-position="307">
+              <caret line="395" column="6" lean-forward="false" selection-start-line="395" selection-start-column="6" selection-end-line="395" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -99,8 +99,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>board_id</find>
-      <find>extra</find>
       <find>addres_map</find>
       <find>address_map</find>
       <find>imagens</find>
@@ -129,6 +127,8 @@
       <find>show</find>
       <find>_preload_in_cache</find>
       <find>insert</find>
+      <find>select</find>
+      <find>columns[</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -382,14 +382,7 @@
       <workItem from="1520021793308" duration="7282000" />
       <workItem from="1520262667148" duration="12254000" />
       <workItem from="1520456309768" duration="22985000" />
-      <workItem from="1520889948309" duration="9142000" />
-    </task>
-    <task id="LOCAL-00004" summary="add prod">
-      <created>1519148452142</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1519148452142</updated>
+      <workItem from="1520889948309" duration="9317000" />
     </task>
     <task id="LOCAL-00005" summary="add secrets">
       <created>1519148988297</created>
@@ -727,11 +720,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520897166533</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="adding try">
+      <created>1520899142747</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1520899142747</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256953000" />
+    <option name="totallyTimeSpent" value="257128000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1361" height="1056" extended-state="4" />
@@ -804,7 +804,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add inspect" />
     <MESSAGE value="reset" />
     <MESSAGE value="xD" />
     <MESSAGE value="add redis config" />
@@ -829,7 +828,8 @@
     <MESSAGE value="fix parser" />
     <MESSAGE value="disable cache in redis if ecxchange full" />
     <MESSAGE value="use idx remote database" />
-    <option name="LAST_COMMIT_MESSAGE" value="use idx remote database" />
+    <MESSAGE value="adding try" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding try" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1156,8 +1156,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/data.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="327" column="49" lean-forward="true" selection-start-line="327" selection-start-column="49" selection-end-line="327" selection-end-column="49" />
+        <state relative-caret-position="307">
+          <caret line="395" column="6" lean-forward="false" selection-start-line="395" selection-start-column="6" selection-end-line="395" selection-end-column="6" />
           <folding />
         </state>
       </provider>
