@@ -309,7 +309,7 @@ defmodule Dgtidx.Data do
       #           }
       #       }
       query = "select id from #{@idx_table_geocode} where sysid = ?"
-      res = Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]])
+      res = (if (!cache), do: %{:num_rows => 0}, else: Ecto.Adapters.SQL.query!(Dgtidx.Repo, query, [row[:sysid]]))
       #res |> IO.inspect()
       #IO.puts "geocode"
 
@@ -317,30 +317,40 @@ defmodule Dgtidx.Data do
                {:ok, geores } -> ( if (geores.rows == []) , do: [[]], else: geores.rows )
                _ -> [[]]
              end)
-      if (res.num_rows > 0) do
+      if (!cache) do
         Ecto.Adapters.SQL.query!(
           Dgtidx.Repo,
-          "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
-          [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
+          "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
+          [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
         )
       else
-        case {type, geo } do
-          {:inserting, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
-                                                   Dgtidx.Repo,
-                                                   "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
-                                                   [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
-                                                 )
-          #|> IO.inspect
-          {:updating, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
-                                                  Dgtidx.Repo,
-                                                  "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
-                                                  [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
-                                                )
-          _ -> IO.inspect("no ins no udpt")
-          #  [[]] -> nil
-          #|> IO.inspect
-        end
+        (if (res.num_rows > 0) do
+          Ecto.Adapters.SQL.query!(
+            Dgtidx.Repo,
+            "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
+            [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
+          )
+        else
+          case {type, geo } do
+            {:inserting, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
+                                                     Dgtidx.Repo,
+                                                     "insert #{@idx_table_geocode} (sysid, lat, lng) values (?, ?, ?)",
+                                                     [row[:sysid],List.first(List.first(geo)), List.last(List.first(geo))]
+                                                   )
+            #|> IO.inspect
+            {:updating, geo } when geo != [[]] -> Ecto.Adapters.SQL.query!(
+                                                    Dgtidx.Repo,
+                                                    "update #{@idx_table_geocode} set lat = ?, lng = ?, location = '' where sysid = ?",
+                                                    [row[:lat], List.first(List.first(geo)), List.last(List.first(geo))]
+                                                  )
+            _ -> IO.inspect("no ins no udpt")
+            #  [[]] -> nil
+            #|> IO.inspect
+          end
+        end)
       end
+
+
 
 
       ##############
